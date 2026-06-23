@@ -8,6 +8,8 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
+app.use("/user", require("./routes/userroutes"))
+
 app.get("/", (req,res)=>{
    res.json({"message":"App started"})
 })
