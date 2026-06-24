@@ -9,6 +9,7 @@ app.use(cors())
 app.use(bodyParser.json())
 
 app.use("/user", require("./routes/userroutes"))
+app.use("/company", require("./routes/companyroutes"))
 
 app.get("/", (req,res)=>{
    res.json({"message":"App started"})

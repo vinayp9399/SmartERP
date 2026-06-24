@@ -1,0 +1,224 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id       String @id @default(cuid())
+  name     String
+  email    String @unique
+  password String
+
+  companies Company[]
+  auditLogs AuditLog[]
+}
+
+model Company {
+  id            String  @id @default(cuid())
+  name          String
+  address       String?
+  gstNumber     String?
+  financialYear String?
+  state         String?
+  contactInfo   String?
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  groups                Group[]
+  ledgers               Ledger[]
+  stockGroups           StockGroup[]
+  units                 Unit[]
+  stockItems            StockItem[]
+  customers             Customer[]
+  suppliers             Supplier[]
+  invoices              Invoice[]
+  vouchers              Voucher[]
+  transactions          Transaction[]
+  inventoryTransactions InventoryTransaction[]
+  gstRecords            GSTRecord[]
+  auditLogs             AuditLog[]
+}
+
+model Group {
+  id   String @id @default(cuid())
+  name String // Assets, Liabilities, Income, Expenses
+
+  companyId String
+  company   Company @relation(fields: [companyId], references: [id])
+
+  ledgers Ledger[]
+}
+
+model Ledger {
+  id   String @id @default(cuid())
+  name String
+  type String // Customer, Supplier, Expense, Income, Bank, Cash, Stock Item
+
+  companyId String
+  company   Company @relation(fields: [companyId], references: [id])
+
+  groupId String?
+  group   Group?  @relation(fields: [groupId], references: [id])
+}
+
+model StockGroup {
+  id   String @id @default(cuid())
+  name String // e.g. Electronics, Furniture, Groceries, Medical
+
+  companyId String
+  company   Company @relation(fields: [companyId], references: [id])
+
+  stockItems StockItem[]
+}
+
+model Unit {
+  id   String @id @default(cuid())
+  name String // PCS, KG, BOX, LTR
+
+  companyId String
+  company   Company @relation(fields: [companyId], references: [id])
+
+  stockItems StockItem[]
+}
+
+model StockItem {
+  id            String  @id @default(cuid())
+  name          String
+  sku           String
+  purchasePrice Decimal @db.Decimal(14, 2)
+  sellingPrice  Decimal @db.Decimal(14, 2)
+  quantity      Decimal @db.Decimal(14, 2)
+  gstPercentage Decimal @db.Decimal(5, 2)
+
+  companyId String
+  company   Company @relation(fields: [companyId], references: [id])
+
+  stockGroupId String?
+  stockGroup   StockGroup? @relation(fields: [stockGroupId], references: [id])
+
+  unitId String?
+  unit   Unit?   @relation(fields: [unitId], references: [id])
+}
+
+model Customer {
+  id                 String  @id @default(cuid())
+  name               String
+  mobileNumber       String?
+  address            String?
+  outstandingBalance Decimal @default(0) @db.Decimal(14, 2)
+
+  companyId String
+  company   Company @relation(fields: [companyId], references: [id])
+
+  vouchers Voucher[]
+  invoices Invoice[]
+}
+
+model Supplier {
+  id              String  @id @default(cuid())
+  name            String
+  purchaseHistory String?
+  paymentHistory  String?
+  outstandingDues Decimal @default(0) @db.Decimal(14, 2)
+
+  companyId String
+  company   Company @relation(fields: [companyId], references: [id])
+
+  vouchers Voucher[]
+}
+
+model Voucher {
+  id            String   @id @default(cuid())
+  voucherType   String // Contra, Payment, Receipt, Journal, Purchase, Sales, Credit Note, Debit Note
+  voucherNumber String
+  date          DateTime
+  amount        Decimal  @db.Decimal(14, 2)
+
+  companyId String
+  company   Company @relation(fields: [companyId], references: [id])
+
+  customerId String?
+  customer   Customer? @relation(fields: [customerId], references: [id])
+
+  supplierId String?
+  supplier   Supplier? @relation(fields: [supplierId], references: [id])
+
+  invoice               Invoice?
+  inventoryTransactions InventoryTransaction[]
+}
+
+model Invoice {
+  id            String   @id @default(cuid())
+  invoiceNumber String
+  invoiceType   String // GST Invoice, Proforma Invoice, Quotation, Estimate
+  date          DateTime
+
+  companyId String
+  company   Company @relation(fields: [companyId], references: [id])
+
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id])
+
+  voucherId String?  @unique
+  voucher   Voucher? @relation(fields: [voucherId], references: [id])
+
+  gstRecords GSTRecord[]
+}
+
+model Transaction {
+  id     String   @id @default(cuid())
+  type   String
+  amount Decimal  @db.Decimal(14, 2)
+  date   DateTime
+
+  companyId String
+  company   Company @relation(fields: [companyId], references: [id])
+}
+
+model InventoryTransaction {
+  id       String   @id @default(cuid())
+  type     String // Stock In, Stock Out, Stock Transfer, Inventory Adjustment
+  quantity Decimal  @db.Decimal(14, 2)
+  date     DateTime
+
+  companyId String
+  company   Company @relation(fields: [companyId], references: [id])
+
+  voucherId String?
+  voucher   Voucher? @relation(fields: [voucherId], references: [id])
+}
+
+model GSTRecord {
+  id   String  @id @default(cuid())
+  cgst Decimal @default(0) @db.Decimal(14, 2)
+  sgst Decimal @default(0) @db.Decimal(14, 2)
+  igst Decimal @default(0) @db.Decimal(14, 2)
+
+  companyId String
+  company   Company @relation(fields: [companyId], references: [id])
+
+  invoiceId String
+  invoice   Invoice @relation(fields: [invoiceId], references: [id])
+}
+
+model AuditLog {
+  id     String   @id @default(cuid())
+  action String
+  date   DateTime @default(now())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  companyId String?
+  company   Company? @relation(fields: [companyId], references: [id])
+}
