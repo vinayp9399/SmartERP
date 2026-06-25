@@ -69,6 +69,16 @@ export default function Companies() {
             </div>
             <div className="flex gap-2">
               <button
+                onClick={() => {
+                  localStorage.setItem("companyId", company.id);
+                  localStorage.setItem("companyName", company.name);
+                  router.push("/dashboard");
+                }}
+                className="bg-green-600 text-white px-3 py-1 rounded text-sm"
+              >
+                Select
+              </button>
+              <button
                 onClick={() =>
                   router.push(`/companies/${company.id}/edit`)
                 }
