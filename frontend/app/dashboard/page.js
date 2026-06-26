@@ -4,16 +4,16 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 const menuItems = [
-  "Masters",
-  "Transactions",
-  "Inventory",
-  "Accounting",
-  "Banking",
-  "Payroll",
-  "GST",
-  "Reports",
-  "Utilities",
-  "Administration",
+  { name: "Masters", path: "/masters/ledgers" },
+  { name: "Transactions", path: null },
+  { name: "Inventory", path: null },
+  { name: "Accounting", path: null },
+  { name: "Banking", path: null },
+  { name: "Payroll", path: null },
+  { name: "GST", path: null },
+  { name: "Reports", path: null },
+  { name: "Utilities", path: null },
+  { name: "Administration", path: null },
 ];
 
 export default function Dashboard() {
@@ -45,10 +45,13 @@ export default function Dashboard() {
       <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
         {menuItems.map((item) => (
           <div
-            key={item}
-            className="bg-white rounded shadow p-6 text-center font-medium cursor-pointer hover:bg-blue-50"
+            key={item.name}
+            onClick={() => item.path && router.push(item.path)}
+            className={`bg-white rounded shadow p-6 text-center font-medium ${
+              item.path ? "cursor-pointer hover:bg-blue-50" : "opacity-60"
+            }`}
           >
-            {item}
+            {item.name}
           </div>
         ))}
       </div>
