@@ -19,7 +19,27 @@ export default function EditLedger() {
   const params = useParams();
   const [name, setName] = useState("");
   const [type, setType] = useState(ledgerTypes[0]);
+  const [groupId, setGroupId] = useState("");
+  const [groups, setGroups] = useState([]);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchGroups = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const companyId = localStorage.getItem("companyId");
+        const res = await axios.get("http://localhost:5000/group", {
+          headers: { auth: token },
+          params: { companyId },
+        });
+        setGroups(res.data.groups);
+      } catch (err) {
+        setError(err.response?.data?.message || "Failed to fetch groups");
+      }
+    };
+
+    fetchGroups();
+  }, []);
 
   useEffect(() => {
     const fetchLedger = async () => {
@@ -31,6 +51,7 @@ export default function EditLedger() {
         );
         setName(res.data.ledger.name);
         setType(res.data.ledger.type);
+        setGroupId(res.data.ledger.groupId || "");
       } catch (err) {
         setError(err.response?.data?.message || "Failed to fetch ledger");
       }
@@ -46,7 +67,7 @@ export default function EditLedger() {
       const token = localStorage.getItem("token");
       await axios.put(
         `http://localhost:5000/ledger/${params.id}`,
-        { name, type },
+        { name, type, groupId: groupId || null },
         { headers: { auth: token } }
       );
       router.push("/masters/ledgers");
@@ -82,6 +103,19 @@ export default function EditLedger() {
           {ledgerTypes.map((t) => (
             <option key={t} value={t}>
               {t}
+            </option>
+          ))}
+        </select>
+
+        <select
+          value={groupId}
+          onChange={(e) => setGroupId(e.target.value)}
+          className="border w-full p-2 mb-3 rounded"
+        >
+          <option value="">No Group</option>
+          {groups.map((g) => (
+            <option key={g.id} value={g.id}>
+              {g.name}
             </option>
           ))}
         </select>

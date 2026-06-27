@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
@@ -18,7 +18,27 @@ export default function NewLedger() {
   const router = useRouter();
   const [name, setName] = useState("");
   const [type, setType] = useState(ledgerTypes[0]);
+  const [groupId, setGroupId] = useState("");
+  const [groups, setGroups] = useState([]);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchGroups = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const companyId = localStorage.getItem("companyId");
+        const res = await axios.get("http://localhost:5000/group", {
+          headers: { auth: token },
+          params: { companyId },
+        });
+        setGroups(res.data.groups);
+      } catch (err) {
+        setError(err.response?.data?.message || "Failed to fetch groups");
+      }
+    };
+
+    fetchGroups();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +48,7 @@ export default function NewLedger() {
       const companyId = localStorage.getItem("companyId");
       await axios.post(
         "http://localhost:5000/ledger",
-        { name, type, companyId },
+        { name, type, companyId, groupId: groupId || null },
         { headers: { auth: token } }
       );
       router.push("/masters/ledgers");
@@ -64,6 +84,19 @@ export default function NewLedger() {
           {ledgerTypes.map((t) => (
             <option key={t} value={t}>
               {t}
+            </option>
+          ))}
+        </select>
+
+        <select
+          value={groupId}
+          onChange={(e) => setGroupId(e.target.value)}
+          className="border w-full p-2 mb-3 rounded"
+        >
+          <option value="">No Group</option>
+          {groups.map((g) => (
+            <option key={g.id} value={g.id}>
+              {g.name}
             </option>
           ))}
         </select>

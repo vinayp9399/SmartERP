@@ -60,12 +60,20 @@ export default function Ledgers() {
     <div className="min-h-screen bg-gray-100 p-8">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold">Ledger Management</h1>
-        <button
-          onClick={() => router.push("/masters/ledgers/new")}
-          className="bg-blue-600 text-white px-4 py-2 rounded"
-        >
-          Create Ledger
-        </button>
+        <div className="flex gap-2">
+          <button
+            onClick={() => router.push("/masters/groups")}
+            className="bg-gray-700 text-white px-4 py-2 rounded"
+          >
+            Manage Groups
+          </button>
+          <button
+            onClick={() => router.push("/masters/ledgers/new")}
+            className="bg-blue-600 text-white px-4 py-2 rounded"
+          >
+            Create Ledger
+          </button>
+        </div>
       </div>
 
       {error && <p className="text-red-500 mb-2">{error}</p>}

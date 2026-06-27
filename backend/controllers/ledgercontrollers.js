@@ -6,7 +6,8 @@ exports.createLedger = async(req, res)=>{
             data:{
                 name: req.body.name,
                 type: req.body.type,
-                companyId: req.body.companyId
+                companyId: req.body.companyId,
+                groupId: req.body.groupId || null
             }
         })
 
@@ -64,7 +65,8 @@ exports.updateLedger = async(req, res)=>{
             where:{id:req.params.id},
             data:{
                 name: req.body.name,
-                type: req.body.type
+                type: req.body.type,
+                groupId: req.body.groupId || null
             }
         })
 
