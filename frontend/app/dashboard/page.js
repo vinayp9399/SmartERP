@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 const menuItems = [
   { name: "Masters", path: "/masters/ledgers" },
   { name: "Transactions", path: null },
-  { name: "Inventory", path: null },
+  { name: "Inventory", path: "/inventory/stock-items" },
   { name: "Accounting", path: null },
   { name: "Banking", path: null },
   { name: "Payroll", path: null },
