@@ -108,6 +108,8 @@ model StockItem {
 
   unitId String?
   unit   Unit? @relation(fields: [unitId], references: [id])
+
+  voucherItems VoucherItem[]
 }
 
 model Customer {
@@ -155,6 +157,7 @@ model Voucher {
 
   invoice               Invoice?
   inventoryTransactions InventoryTransaction[]
+  voucherItems          VoucherItem[]
 }
 
 model Invoice {
@@ -196,6 +199,19 @@ model InventoryTransaction {
 
   voucherId String?
   voucher   Voucher? @relation(fields: [voucherId], references: [id])
+}
+
+model VoucherItem {
+  id     String  @id @default(cuid())
+  qty    Decimal @db.Decimal(14, 2)
+  rate   Decimal @db.Decimal(14, 2)
+  amount Decimal @db.Decimal(14, 2)
+
+  voucherId String
+  voucher   Voucher @relation(fields: [voucherId], references: [id])
+
+  stockItemId String
+  stockItem   StockItem @relation(fields: [stockItemId], references: [id])
 }
 
 model GSTRecord {

@@ -64,6 +64,7 @@ export const ModelName = {
   Invoice: 'Invoice',
   Transaction: 'Transaction',
   InventoryTransaction: 'InventoryTransaction',
+  VoucherItem: 'VoucherItem',
   GSTRecord: 'GSTRecord',
   AuditLog: 'AuditLog'
 } as const
@@ -234,6 +235,18 @@ export const InventoryTransactionScalarFieldEnum = {
 } as const
 
 export type InventoryTransactionScalarFieldEnum = (typeof InventoryTransactionScalarFieldEnum)[keyof typeof InventoryTransactionScalarFieldEnum]
+
+
+export const VoucherItemScalarFieldEnum = {
+  id: 'id',
+  qty: 'qty',
+  rate: 'rate',
+  amount: 'amount',
+  voucherId: 'voucherId',
+  stockItemId: 'stockItemId'
+} as const
+
+export type VoucherItemScalarFieldEnum = (typeof VoucherItemScalarFieldEnum)[keyof typeof VoucherItemScalarFieldEnum]
 
 
 export const GSTRecordScalarFieldEnum = {

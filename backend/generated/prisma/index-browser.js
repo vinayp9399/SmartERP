@@ -233,6 +233,15 @@ exports.Prisma.InventoryTransactionScalarFieldEnum = {
   voucherId: 'voucherId'
 };
 
+exports.Prisma.VoucherItemScalarFieldEnum = {
+  id: 'id',
+  qty: 'qty',
+  rate: 'rate',
+  amount: 'amount',
+  voucherId: 'voucherId',
+  stockItemId: 'stockItemId'
+};
+
 exports.Prisma.GSTRecordScalarFieldEnum = {
   id: 'id',
   cgst: 'cgst',
@@ -280,6 +289,7 @@ exports.Prisma.ModelName = {
   Invoice: 'Invoice',
   Transaction: 'Transaction',
   InventoryTransaction: 'InventoryTransaction',
+  VoucherItem: 'VoucherItem',
   GSTRecord: 'GSTRecord',
   AuditLog: 'AuditLog'
 };

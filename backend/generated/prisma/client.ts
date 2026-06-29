@@ -107,6 +107,11 @@ export type Transaction = Prisma.TransactionModel
  */
 export type InventoryTransaction = Prisma.InventoryTransactionModel
 /**
+ * Model VoucherItem
+ * 
+ */
+export type VoucherItem = Prisma.VoucherItemModel
+/**
  * Model GSTRecord
  * 
  */

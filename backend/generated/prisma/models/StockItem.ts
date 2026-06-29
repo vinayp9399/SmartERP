@@ -271,6 +271,7 @@ export type StockItemWhereInput = {
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
   stockGroup?: Prisma.XOR<Prisma.StockGroupNullableScalarRelationFilter, Prisma.StockGroupWhereInput> | null
   unit?: Prisma.XOR<Prisma.UnitNullableScalarRelationFilter, Prisma.UnitWhereInput> | null
+  voucherItems?: Prisma.VoucherItemListRelationFilter
 }
 
 export type StockItemOrderByWithRelationInput = {
@@ -287,6 +288,7 @@ export type StockItemOrderByWithRelationInput = {
   company?: Prisma.CompanyOrderByWithRelationInput
   stockGroup?: Prisma.StockGroupOrderByWithRelationInput
   unit?: Prisma.UnitOrderByWithRelationInput
+  voucherItems?: Prisma.VoucherItemOrderByRelationAggregateInput
 }
 
 export type StockItemWhereUniqueInput = Prisma.AtLeast<{
@@ -306,6 +308,7 @@ export type StockItemWhereUniqueInput = Prisma.AtLeast<{
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
   stockGroup?: Prisma.XOR<Prisma.StockGroupNullableScalarRelationFilter, Prisma.StockGroupWhereInput> | null
   unit?: Prisma.XOR<Prisma.UnitNullableScalarRelationFilter, Prisma.UnitWhereInput> | null
+  voucherItems?: Prisma.VoucherItemListRelationFilter
 }, "id">
 
 export type StockItemOrderByWithAggregationInput = {
@@ -353,6 +356,7 @@ export type StockItemCreateInput = {
   company: Prisma.CompanyCreateNestedOneWithoutStockItemsInput
   stockGroup?: Prisma.StockGroupCreateNestedOneWithoutStockItemsInput
   unit?: Prisma.UnitCreateNestedOneWithoutStockItemsInput
+  voucherItems?: Prisma.VoucherItemCreateNestedManyWithoutStockItemInput
 }
 
 export type StockItemUncheckedCreateInput = {
@@ -366,6 +370,7 @@ export type StockItemUncheckedCreateInput = {
   companyId: string
   stockGroupId?: string | null
   unitId?: string | null
+  voucherItems?: Prisma.VoucherItemUncheckedCreateNestedManyWithoutStockItemInput
 }
 
 export type StockItemUpdateInput = {
@@ -379,6 +384,7 @@ export type StockItemUpdateInput = {
   company?: Prisma.CompanyUpdateOneRequiredWithoutStockItemsNestedInput
   stockGroup?: Prisma.StockGroupUpdateOneWithoutStockItemsNestedInput
   unit?: Prisma.UnitUpdateOneWithoutStockItemsNestedInput
+  voucherItems?: Prisma.VoucherItemUpdateManyWithoutStockItemNestedInput
 }
 
 export type StockItemUncheckedUpdateInput = {
@@ -392,6 +398,7 @@ export type StockItemUncheckedUpdateInput = {
   companyId?: Prisma.StringFieldUpdateOperationsInput | string
   stockGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   unitId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  voucherItems?: Prisma.VoucherItemUncheckedUpdateManyWithoutStockItemNestedInput
 }
 
 export type StockItemCreateManyInput = {
@@ -491,6 +498,11 @@ export type StockItemSumOrderByAggregateInput = {
   sellingPrice?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   gstPercentage?: Prisma.SortOrder
+}
+
+export type StockItemScalarRelationFilter = {
+  is?: Prisma.StockItemWhereInput
+  isNot?: Prisma.StockItemWhereInput
 }
 
 export type StockItemCreateNestedManyWithoutCompanyInput = {
@@ -627,6 +639,20 @@ export type DecimalFieldUpdateOperationsInput = {
   divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
+export type StockItemCreateNestedOneWithoutVoucherItemsInput = {
+  create?: Prisma.XOR<Prisma.StockItemCreateWithoutVoucherItemsInput, Prisma.StockItemUncheckedCreateWithoutVoucherItemsInput>
+  connectOrCreate?: Prisma.StockItemCreateOrConnectWithoutVoucherItemsInput
+  connect?: Prisma.StockItemWhereUniqueInput
+}
+
+export type StockItemUpdateOneRequiredWithoutVoucherItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.StockItemCreateWithoutVoucherItemsInput, Prisma.StockItemUncheckedCreateWithoutVoucherItemsInput>
+  connectOrCreate?: Prisma.StockItemCreateOrConnectWithoutVoucherItemsInput
+  upsert?: Prisma.StockItemUpsertWithoutVoucherItemsInput
+  connect?: Prisma.StockItemWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.StockItemUpdateToOneWithWhereWithoutVoucherItemsInput, Prisma.StockItemUpdateWithoutVoucherItemsInput>, Prisma.StockItemUncheckedUpdateWithoutVoucherItemsInput>
+}
+
 export type StockItemCreateWithoutCompanyInput = {
   id?: string
   name: string
@@ -637,6 +663,7 @@ export type StockItemCreateWithoutCompanyInput = {
   gstPercentage: runtime.Decimal | runtime.DecimalJsLike | number | string
   stockGroup?: Prisma.StockGroupCreateNestedOneWithoutStockItemsInput
   unit?: Prisma.UnitCreateNestedOneWithoutStockItemsInput
+  voucherItems?: Prisma.VoucherItemCreateNestedManyWithoutStockItemInput
 }
 
 export type StockItemUncheckedCreateWithoutCompanyInput = {
@@ -649,6 +676,7 @@ export type StockItemUncheckedCreateWithoutCompanyInput = {
   gstPercentage: runtime.Decimal | runtime.DecimalJsLike | number | string
   stockGroupId?: string | null
   unitId?: string | null
+  voucherItems?: Prisma.VoucherItemUncheckedCreateNestedManyWithoutStockItemInput
 }
 
 export type StockItemCreateOrConnectWithoutCompanyInput = {
@@ -703,6 +731,7 @@ export type StockItemCreateWithoutStockGroupInput = {
   gstPercentage: runtime.Decimal | runtime.DecimalJsLike | number | string
   company: Prisma.CompanyCreateNestedOneWithoutStockItemsInput
   unit?: Prisma.UnitCreateNestedOneWithoutStockItemsInput
+  voucherItems?: Prisma.VoucherItemCreateNestedManyWithoutStockItemInput
 }
 
 export type StockItemUncheckedCreateWithoutStockGroupInput = {
@@ -715,6 +744,7 @@ export type StockItemUncheckedCreateWithoutStockGroupInput = {
   gstPercentage: runtime.Decimal | runtime.DecimalJsLike | number | string
   companyId: string
   unitId?: string | null
+  voucherItems?: Prisma.VoucherItemUncheckedCreateNestedManyWithoutStockItemInput
 }
 
 export type StockItemCreateOrConnectWithoutStockGroupInput = {
@@ -753,6 +783,7 @@ export type StockItemCreateWithoutUnitInput = {
   gstPercentage: runtime.Decimal | runtime.DecimalJsLike | number | string
   company: Prisma.CompanyCreateNestedOneWithoutStockItemsInput
   stockGroup?: Prisma.StockGroupCreateNestedOneWithoutStockItemsInput
+  voucherItems?: Prisma.VoucherItemCreateNestedManyWithoutStockItemInput
 }
 
 export type StockItemUncheckedCreateWithoutUnitInput = {
@@ -765,6 +796,7 @@ export type StockItemUncheckedCreateWithoutUnitInput = {
   gstPercentage: runtime.Decimal | runtime.DecimalJsLike | number | string
   companyId: string
   stockGroupId?: string | null
+  voucherItems?: Prisma.VoucherItemUncheckedCreateNestedManyWithoutStockItemInput
 }
 
 export type StockItemCreateOrConnectWithoutUnitInput = {
@@ -793,6 +825,74 @@ export type StockItemUpdateManyWithWhereWithoutUnitInput = {
   data: Prisma.XOR<Prisma.StockItemUpdateManyMutationInput, Prisma.StockItemUncheckedUpdateManyWithoutUnitInput>
 }
 
+export type StockItemCreateWithoutVoucherItemsInput = {
+  id?: string
+  name: string
+  sku: string
+  purchasePrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  sellingPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  quantity: runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstPercentage: runtime.Decimal | runtime.DecimalJsLike | number | string
+  company: Prisma.CompanyCreateNestedOneWithoutStockItemsInput
+  stockGroup?: Prisma.StockGroupCreateNestedOneWithoutStockItemsInput
+  unit?: Prisma.UnitCreateNestedOneWithoutStockItemsInput
+}
+
+export type StockItemUncheckedCreateWithoutVoucherItemsInput = {
+  id?: string
+  name: string
+  sku: string
+  purchasePrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  sellingPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  quantity: runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstPercentage: runtime.Decimal | runtime.DecimalJsLike | number | string
+  companyId: string
+  stockGroupId?: string | null
+  unitId?: string | null
+}
+
+export type StockItemCreateOrConnectWithoutVoucherItemsInput = {
+  where: Prisma.StockItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.StockItemCreateWithoutVoucherItemsInput, Prisma.StockItemUncheckedCreateWithoutVoucherItemsInput>
+}
+
+export type StockItemUpsertWithoutVoucherItemsInput = {
+  update: Prisma.XOR<Prisma.StockItemUpdateWithoutVoucherItemsInput, Prisma.StockItemUncheckedUpdateWithoutVoucherItemsInput>
+  create: Prisma.XOR<Prisma.StockItemCreateWithoutVoucherItemsInput, Prisma.StockItemUncheckedCreateWithoutVoucherItemsInput>
+  where?: Prisma.StockItemWhereInput
+}
+
+export type StockItemUpdateToOneWithWhereWithoutVoucherItemsInput = {
+  where?: Prisma.StockItemWhereInput
+  data: Prisma.XOR<Prisma.StockItemUpdateWithoutVoucherItemsInput, Prisma.StockItemUncheckedUpdateWithoutVoucherItemsInput>
+}
+
+export type StockItemUpdateWithoutVoucherItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  sku?: Prisma.StringFieldUpdateOperationsInput | string
+  purchasePrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sellingPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstPercentage?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  company?: Prisma.CompanyUpdateOneRequiredWithoutStockItemsNestedInput
+  stockGroup?: Prisma.StockGroupUpdateOneWithoutStockItemsNestedInput
+  unit?: Prisma.UnitUpdateOneWithoutStockItemsNestedInput
+}
+
+export type StockItemUncheckedUpdateWithoutVoucherItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  sku?: Prisma.StringFieldUpdateOperationsInput | string
+  purchasePrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sellingPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  quantity?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  gstPercentage?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  companyId?: Prisma.StringFieldUpdateOperationsInput | string
+  stockGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
 export type StockItemCreateManyCompanyInput = {
   id?: string
   name: string
@@ -815,6 +915,7 @@ export type StockItemUpdateWithoutCompanyInput = {
   gstPercentage?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   stockGroup?: Prisma.StockGroupUpdateOneWithoutStockItemsNestedInput
   unit?: Prisma.UnitUpdateOneWithoutStockItemsNestedInput
+  voucherItems?: Prisma.VoucherItemUpdateManyWithoutStockItemNestedInput
 }
 
 export type StockItemUncheckedUpdateWithoutCompanyInput = {
@@ -827,6 +928,7 @@ export type StockItemUncheckedUpdateWithoutCompanyInput = {
   gstPercentage?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   stockGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   unitId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  voucherItems?: Prisma.VoucherItemUncheckedUpdateManyWithoutStockItemNestedInput
 }
 
 export type StockItemUncheckedUpdateManyWithoutCompanyInput = {
@@ -863,6 +965,7 @@ export type StockItemUpdateWithoutStockGroupInput = {
   gstPercentage?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   company?: Prisma.CompanyUpdateOneRequiredWithoutStockItemsNestedInput
   unit?: Prisma.UnitUpdateOneWithoutStockItemsNestedInput
+  voucherItems?: Prisma.VoucherItemUpdateManyWithoutStockItemNestedInput
 }
 
 export type StockItemUncheckedUpdateWithoutStockGroupInput = {
@@ -875,6 +978,7 @@ export type StockItemUncheckedUpdateWithoutStockGroupInput = {
   gstPercentage?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   companyId?: Prisma.StringFieldUpdateOperationsInput | string
   unitId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  voucherItems?: Prisma.VoucherItemUncheckedUpdateManyWithoutStockItemNestedInput
 }
 
 export type StockItemUncheckedUpdateManyWithoutStockGroupInput = {
@@ -911,6 +1015,7 @@ export type StockItemUpdateWithoutUnitInput = {
   gstPercentage?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   company?: Prisma.CompanyUpdateOneRequiredWithoutStockItemsNestedInput
   stockGroup?: Prisma.StockGroupUpdateOneWithoutStockItemsNestedInput
+  voucherItems?: Prisma.VoucherItemUpdateManyWithoutStockItemNestedInput
 }
 
 export type StockItemUncheckedUpdateWithoutUnitInput = {
@@ -923,6 +1028,7 @@ export type StockItemUncheckedUpdateWithoutUnitInput = {
   gstPercentage?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   companyId?: Prisma.StringFieldUpdateOperationsInput | string
   stockGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  voucherItems?: Prisma.VoucherItemUncheckedUpdateManyWithoutStockItemNestedInput
 }
 
 export type StockItemUncheckedUpdateManyWithoutUnitInput = {
@@ -937,6 +1043,35 @@ export type StockItemUncheckedUpdateManyWithoutUnitInput = {
   stockGroupId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
+
+/**
+ * Count Type StockItemCountOutputType
+ */
+
+export type StockItemCountOutputType = {
+  voucherItems: number
+}
+
+export type StockItemCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  voucherItems?: boolean | StockItemCountOutputTypeCountVoucherItemsArgs
+}
+
+/**
+ * StockItemCountOutputType without action
+ */
+export type StockItemCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the StockItemCountOutputType
+   */
+  select?: Prisma.StockItemCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * StockItemCountOutputType without action
+ */
+export type StockItemCountOutputTypeCountVoucherItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.VoucherItemWhereInput
+}
 
 
 export type StockItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -953,6 +1088,8 @@ export type StockItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
   stockGroup?: boolean | Prisma.StockItem$stockGroupArgs<ExtArgs>
   unit?: boolean | Prisma.StockItem$unitArgs<ExtArgs>
+  voucherItems?: boolean | Prisma.StockItem$voucherItemsArgs<ExtArgs>
+  _count?: boolean | Prisma.StockItemCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["stockItem"]>
 
 export type StockItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1005,6 +1142,8 @@ export type StockItemInclude<ExtArgs extends runtime.Types.Extensions.InternalAr
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
   stockGroup?: boolean | Prisma.StockItem$stockGroupArgs<ExtArgs>
   unit?: boolean | Prisma.StockItem$unitArgs<ExtArgs>
+  voucherItems?: boolean | Prisma.StockItem$voucherItemsArgs<ExtArgs>
+  _count?: boolean | Prisma.StockItemCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type StockItemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
@@ -1023,6 +1162,7 @@ export type $StockItemPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     company: Prisma.$CompanyPayload<ExtArgs>
     stockGroup: Prisma.$StockGroupPayload<ExtArgs> | null
     unit: Prisma.$UnitPayload<ExtArgs> | null
+    voucherItems: Prisma.$VoucherItemPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1432,6 +1572,7 @@ export interface Prisma__StockItemClient<T, Null = never, ExtArgs extends runtim
   company<T extends Prisma.CompanyDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CompanyDefaultArgs<ExtArgs>>): Prisma.Prisma__CompanyClient<runtime.Types.Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   stockGroup<T extends Prisma.StockItem$stockGroupArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StockItem$stockGroupArgs<ExtArgs>>): Prisma.Prisma__StockGroupClient<runtime.Types.Result.GetResult<Prisma.$StockGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   unit<T extends Prisma.StockItem$unitArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StockItem$unitArgs<ExtArgs>>): Prisma.Prisma__UnitClient<runtime.Types.Result.GetResult<Prisma.$UnitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  voucherItems<T extends Prisma.StockItem$voucherItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StockItem$voucherItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VoucherItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1907,6 +2048,30 @@ export type StockItem$unitArgs<ExtArgs extends runtime.Types.Extensions.Internal
    */
   include?: Prisma.UnitInclude<ExtArgs> | null
   where?: Prisma.UnitWhereInput
+}
+
+/**
+ * StockItem.voucherItems
+ */
+export type StockItem$voucherItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the VoucherItem
+   */
+  select?: Prisma.VoucherItemSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the VoucherItem
+   */
+  omit?: Prisma.VoucherItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.VoucherItemInclude<ExtArgs> | null
+  where?: Prisma.VoucherItemWhereInput
+  orderBy?: Prisma.VoucherItemOrderByWithRelationInput | Prisma.VoucherItemOrderByWithRelationInput[]
+  cursor?: Prisma.VoucherItemWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.VoucherItemScalarFieldEnum | Prisma.VoucherItemScalarFieldEnum[]
 }
 
 /**

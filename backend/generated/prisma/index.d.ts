@@ -79,6 +79,11 @@ export type Transaction = $Result.DefaultSelection<Prisma.$TransactionPayload>
  */
 export type InventoryTransaction = $Result.DefaultSelection<Prisma.$InventoryTransactionPayload>
 /**
+ * Model VoucherItem
+ * 
+ */
+export type VoucherItem = $Result.DefaultSelection<Prisma.$VoucherItemPayload>
+/**
  * Model GSTRecord
  * 
  */
@@ -339,6 +344,16 @@ export class PrismaClient<
     * ```
     */
   get inventoryTransaction(): Prisma.InventoryTransactionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.voucherItem`: Exposes CRUD operations for the **VoucherItem** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more VoucherItems
+    * const voucherItems = await prisma.voucherItem.findMany()
+    * ```
+    */
+  get voucherItem(): Prisma.VoucherItemDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.gSTRecord`: Exposes CRUD operations for the **GSTRecord** model.
@@ -806,6 +821,7 @@ export namespace Prisma {
     Invoice: 'Invoice',
     Transaction: 'Transaction',
     InventoryTransaction: 'InventoryTransaction',
+    VoucherItem: 'VoucherItem',
     GSTRecord: 'GSTRecord',
     AuditLog: 'AuditLog'
   };
@@ -823,7 +839,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "company" | "group" | "ledger" | "stockGroup" | "unit" | "stockItem" | "customer" | "supplier" | "voucher" | "invoice" | "transaction" | "inventoryTransaction" | "gSTRecord" | "auditLog"
+      modelProps: "user" | "company" | "group" | "ledger" | "stockGroup" | "unit" | "stockItem" | "customer" | "supplier" | "voucher" | "invoice" | "transaction" | "inventoryTransaction" | "voucherItem" | "gSTRecord" | "auditLog"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1789,6 +1805,80 @@ export namespace Prisma {
           }
         }
       }
+      VoucherItem: {
+        payload: Prisma.$VoucherItemPayload<ExtArgs>
+        fields: Prisma.VoucherItemFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.VoucherItemFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoucherItemPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.VoucherItemFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoucherItemPayload>
+          }
+          findFirst: {
+            args: Prisma.VoucherItemFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoucherItemPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.VoucherItemFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoucherItemPayload>
+          }
+          findMany: {
+            args: Prisma.VoucherItemFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoucherItemPayload>[]
+          }
+          create: {
+            args: Prisma.VoucherItemCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoucherItemPayload>
+          }
+          createMany: {
+            args: Prisma.VoucherItemCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.VoucherItemCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoucherItemPayload>[]
+          }
+          delete: {
+            args: Prisma.VoucherItemDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoucherItemPayload>
+          }
+          update: {
+            args: Prisma.VoucherItemUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoucherItemPayload>
+          }
+          deleteMany: {
+            args: Prisma.VoucherItemDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.VoucherItemUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.VoucherItemUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoucherItemPayload>[]
+          }
+          upsert: {
+            args: Prisma.VoucherItemUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VoucherItemPayload>
+          }
+          aggregate: {
+            args: Prisma.VoucherItemAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateVoucherItem>
+          }
+          groupBy: {
+            args: Prisma.VoucherItemGroupByArgs<ExtArgs>
+            result: $Utils.Optional<VoucherItemGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.VoucherItemCountArgs<ExtArgs>
+            result: $Utils.Optional<VoucherItemCountAggregateOutputType> | number
+          }
+        }
+      }
       GSTRecord: {
         payload: Prisma.$GSTRecordPayload<ExtArgs>
         fields: Prisma.GSTRecordFieldRefs
@@ -2058,6 +2148,7 @@ export namespace Prisma {
     invoice?: InvoiceOmit
     transaction?: TransactionOmit
     inventoryTransaction?: InventoryTransactionOmit
+    voucherItem?: VoucherItemOmit
     gSTRecord?: GSTRecordOmit
     auditLog?: AuditLogOmit
   }
@@ -2408,6 +2499,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type StockItemCountOutputType
+   */
+
+  export type StockItemCountOutputType = {
+    voucherItems: number
+  }
+
+  export type StockItemCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    voucherItems?: boolean | StockItemCountOutputTypeCountVoucherItemsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * StockItemCountOutputType without action
+   */
+  export type StockItemCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StockItemCountOutputType
+     */
+    select?: StockItemCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * StockItemCountOutputType without action
+   */
+  export type StockItemCountOutputTypeCountVoucherItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VoucherItemWhereInput
+  }
+
+
+  /**
    * Count Type CustomerCountOutputType
    */
 
@@ -2484,10 +2606,12 @@ export namespace Prisma {
 
   export type VoucherCountOutputType = {
     inventoryTransactions: number
+    voucherItems: number
   }
 
   export type VoucherCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     inventoryTransactions?: boolean | VoucherCountOutputTypeCountInventoryTransactionsArgs
+    voucherItems?: boolean | VoucherCountOutputTypeCountVoucherItemsArgs
   }
 
   // Custom InputTypes
@@ -2506,6 +2630,13 @@ export namespace Prisma {
    */
   export type VoucherCountOutputTypeCountInventoryTransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: InventoryTransactionWhereInput
+  }
+
+  /**
+   * VoucherCountOutputType without action
+   */
+  export type VoucherCountOutputTypeCountVoucherItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VoucherItemWhereInput
   }
 
 
@@ -9646,6 +9777,8 @@ export namespace Prisma {
     company?: boolean | CompanyDefaultArgs<ExtArgs>
     stockGroup?: boolean | StockItem$stockGroupArgs<ExtArgs>
     unit?: boolean | StockItem$unitArgs<ExtArgs>
+    voucherItems?: boolean | StockItem$voucherItemsArgs<ExtArgs>
+    _count?: boolean | StockItemCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["stockItem"]>
 
   export type StockItemSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -9698,6 +9831,8 @@ export namespace Prisma {
     company?: boolean | CompanyDefaultArgs<ExtArgs>
     stockGroup?: boolean | StockItem$stockGroupArgs<ExtArgs>
     unit?: boolean | StockItem$unitArgs<ExtArgs>
+    voucherItems?: boolean | StockItem$voucherItemsArgs<ExtArgs>
+    _count?: boolean | StockItemCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type StockItemIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     company?: boolean | CompanyDefaultArgs<ExtArgs>
@@ -9716,6 +9851,7 @@ export namespace Prisma {
       company: Prisma.$CompanyPayload<ExtArgs>
       stockGroup: Prisma.$StockGroupPayload<ExtArgs> | null
       unit: Prisma.$UnitPayload<ExtArgs> | null
+      voucherItems: Prisma.$VoucherItemPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -10125,6 +10261,7 @@ export namespace Prisma {
     company<T extends CompanyDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CompanyDefaultArgs<ExtArgs>>): Prisma__CompanyClient<$Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     stockGroup<T extends StockItem$stockGroupArgs<ExtArgs> = {}>(args?: Subset<T, StockItem$stockGroupArgs<ExtArgs>>): Prisma__StockGroupClient<$Result.GetResult<Prisma.$StockGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     unit<T extends StockItem$unitArgs<ExtArgs> = {}>(args?: Subset<T, StockItem$unitArgs<ExtArgs>>): Prisma__UnitClient<$Result.GetResult<Prisma.$UnitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    voucherItems<T extends StockItem$voucherItemsArgs<ExtArgs> = {}>(args?: Subset<T, StockItem$voucherItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VoucherItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10600,6 +10737,30 @@ export namespace Prisma {
      */
     include?: UnitInclude<ExtArgs> | null
     where?: UnitWhereInput
+  }
+
+  /**
+   * StockItem.voucherItems
+   */
+  export type StockItem$voucherItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VoucherItem
+     */
+    select?: VoucherItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VoucherItem
+     */
+    omit?: VoucherItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoucherItemInclude<ExtArgs> | null
+    where?: VoucherItemWhereInput
+    orderBy?: VoucherItemOrderByWithRelationInput | VoucherItemOrderByWithRelationInput[]
+    cursor?: VoucherItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: VoucherItemScalarFieldEnum | VoucherItemScalarFieldEnum[]
   }
 
   /**
@@ -13156,6 +13317,7 @@ export namespace Prisma {
     supplier?: boolean | Voucher$supplierArgs<ExtArgs>
     invoice?: boolean | Voucher$invoiceArgs<ExtArgs>
     inventoryTransactions?: boolean | Voucher$inventoryTransactionsArgs<ExtArgs>
+    voucherItems?: boolean | Voucher$voucherItemsArgs<ExtArgs>
     _count?: boolean | VoucherCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["voucher"]>
 
@@ -13205,6 +13367,7 @@ export namespace Prisma {
     supplier?: boolean | Voucher$supplierArgs<ExtArgs>
     invoice?: boolean | Voucher$invoiceArgs<ExtArgs>
     inventoryTransactions?: boolean | Voucher$inventoryTransactionsArgs<ExtArgs>
+    voucherItems?: boolean | Voucher$voucherItemsArgs<ExtArgs>
     _count?: boolean | VoucherCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type VoucherIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -13226,6 +13389,7 @@ export namespace Prisma {
       supplier: Prisma.$SupplierPayload<ExtArgs> | null
       invoice: Prisma.$InvoicePayload<ExtArgs> | null
       inventoryTransactions: Prisma.$InventoryTransactionPayload<ExtArgs>[]
+      voucherItems: Prisma.$VoucherItemPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -13635,6 +13799,7 @@ export namespace Prisma {
     supplier<T extends Voucher$supplierArgs<ExtArgs> = {}>(args?: Subset<T, Voucher$supplierArgs<ExtArgs>>): Prisma__SupplierClient<$Result.GetResult<Prisma.$SupplierPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     invoice<T extends Voucher$invoiceArgs<ExtArgs> = {}>(args?: Subset<T, Voucher$invoiceArgs<ExtArgs>>): Prisma__InvoiceClient<$Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     inventoryTransactions<T extends Voucher$inventoryTransactionsArgs<ExtArgs> = {}>(args?: Subset<T, Voucher$inventoryTransactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InventoryTransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    voucherItems<T extends Voucher$voucherItemsArgs<ExtArgs> = {}>(args?: Subset<T, Voucher$voucherItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VoucherItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -14151,6 +14316,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: InventoryTransactionScalarFieldEnum | InventoryTransactionScalarFieldEnum[]
+  }
+
+  /**
+   * Voucher.voucherItems
+   */
+  export type Voucher$voucherItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VoucherItem
+     */
+    select?: VoucherItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VoucherItem
+     */
+    omit?: VoucherItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoucherItemInclude<ExtArgs> | null
+    where?: VoucherItemWhereInput
+    orderBy?: VoucherItemOrderByWithRelationInput | VoucherItemOrderByWithRelationInput[]
+    cursor?: VoucherItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: VoucherItemScalarFieldEnum | VoucherItemScalarFieldEnum[]
   }
 
   /**
@@ -17561,6 +17750,1132 @@ export namespace Prisma {
 
 
   /**
+   * Model VoucherItem
+   */
+
+  export type AggregateVoucherItem = {
+    _count: VoucherItemCountAggregateOutputType | null
+    _avg: VoucherItemAvgAggregateOutputType | null
+    _sum: VoucherItemSumAggregateOutputType | null
+    _min: VoucherItemMinAggregateOutputType | null
+    _max: VoucherItemMaxAggregateOutputType | null
+  }
+
+  export type VoucherItemAvgAggregateOutputType = {
+    qty: Decimal | null
+    rate: Decimal | null
+    amount: Decimal | null
+  }
+
+  export type VoucherItemSumAggregateOutputType = {
+    qty: Decimal | null
+    rate: Decimal | null
+    amount: Decimal | null
+  }
+
+  export type VoucherItemMinAggregateOutputType = {
+    id: string | null
+    qty: Decimal | null
+    rate: Decimal | null
+    amount: Decimal | null
+    voucherId: string | null
+    stockItemId: string | null
+  }
+
+  export type VoucherItemMaxAggregateOutputType = {
+    id: string | null
+    qty: Decimal | null
+    rate: Decimal | null
+    amount: Decimal | null
+    voucherId: string | null
+    stockItemId: string | null
+  }
+
+  export type VoucherItemCountAggregateOutputType = {
+    id: number
+    qty: number
+    rate: number
+    amount: number
+    voucherId: number
+    stockItemId: number
+    _all: number
+  }
+
+
+  export type VoucherItemAvgAggregateInputType = {
+    qty?: true
+    rate?: true
+    amount?: true
+  }
+
+  export type VoucherItemSumAggregateInputType = {
+    qty?: true
+    rate?: true
+    amount?: true
+  }
+
+  export type VoucherItemMinAggregateInputType = {
+    id?: true
+    qty?: true
+    rate?: true
+    amount?: true
+    voucherId?: true
+    stockItemId?: true
+  }
+
+  export type VoucherItemMaxAggregateInputType = {
+    id?: true
+    qty?: true
+    rate?: true
+    amount?: true
+    voucherId?: true
+    stockItemId?: true
+  }
+
+  export type VoucherItemCountAggregateInputType = {
+    id?: true
+    qty?: true
+    rate?: true
+    amount?: true
+    voucherId?: true
+    stockItemId?: true
+    _all?: true
+  }
+
+  export type VoucherItemAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which VoucherItem to aggregate.
+     */
+    where?: VoucherItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VoucherItems to fetch.
+     */
+    orderBy?: VoucherItemOrderByWithRelationInput | VoucherItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: VoucherItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VoucherItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VoucherItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned VoucherItems
+    **/
+    _count?: true | VoucherItemCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: VoucherItemAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: VoucherItemSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: VoucherItemMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: VoucherItemMaxAggregateInputType
+  }
+
+  export type GetVoucherItemAggregateType<T extends VoucherItemAggregateArgs> = {
+        [P in keyof T & keyof AggregateVoucherItem]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateVoucherItem[P]>
+      : GetScalarType<T[P], AggregateVoucherItem[P]>
+  }
+
+
+
+
+  export type VoucherItemGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VoucherItemWhereInput
+    orderBy?: VoucherItemOrderByWithAggregationInput | VoucherItemOrderByWithAggregationInput[]
+    by: VoucherItemScalarFieldEnum[] | VoucherItemScalarFieldEnum
+    having?: VoucherItemScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: VoucherItemCountAggregateInputType | true
+    _avg?: VoucherItemAvgAggregateInputType
+    _sum?: VoucherItemSumAggregateInputType
+    _min?: VoucherItemMinAggregateInputType
+    _max?: VoucherItemMaxAggregateInputType
+  }
+
+  export type VoucherItemGroupByOutputType = {
+    id: string
+    qty: Decimal
+    rate: Decimal
+    amount: Decimal
+    voucherId: string
+    stockItemId: string
+    _count: VoucherItemCountAggregateOutputType | null
+    _avg: VoucherItemAvgAggregateOutputType | null
+    _sum: VoucherItemSumAggregateOutputType | null
+    _min: VoucherItemMinAggregateOutputType | null
+    _max: VoucherItemMaxAggregateOutputType | null
+  }
+
+  type GetVoucherItemGroupByPayload<T extends VoucherItemGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<VoucherItemGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof VoucherItemGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], VoucherItemGroupByOutputType[P]>
+            : GetScalarType<T[P], VoucherItemGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type VoucherItemSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    qty?: boolean
+    rate?: boolean
+    amount?: boolean
+    voucherId?: boolean
+    stockItemId?: boolean
+    voucher?: boolean | VoucherDefaultArgs<ExtArgs>
+    stockItem?: boolean | StockItemDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["voucherItem"]>
+
+  export type VoucherItemSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    qty?: boolean
+    rate?: boolean
+    amount?: boolean
+    voucherId?: boolean
+    stockItemId?: boolean
+    voucher?: boolean | VoucherDefaultArgs<ExtArgs>
+    stockItem?: boolean | StockItemDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["voucherItem"]>
+
+  export type VoucherItemSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    qty?: boolean
+    rate?: boolean
+    amount?: boolean
+    voucherId?: boolean
+    stockItemId?: boolean
+    voucher?: boolean | VoucherDefaultArgs<ExtArgs>
+    stockItem?: boolean | StockItemDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["voucherItem"]>
+
+  export type VoucherItemSelectScalar = {
+    id?: boolean
+    qty?: boolean
+    rate?: boolean
+    amount?: boolean
+    voucherId?: boolean
+    stockItemId?: boolean
+  }
+
+  export type VoucherItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "qty" | "rate" | "amount" | "voucherId" | "stockItemId", ExtArgs["result"]["voucherItem"]>
+  export type VoucherItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    voucher?: boolean | VoucherDefaultArgs<ExtArgs>
+    stockItem?: boolean | StockItemDefaultArgs<ExtArgs>
+  }
+  export type VoucherItemIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    voucher?: boolean | VoucherDefaultArgs<ExtArgs>
+    stockItem?: boolean | StockItemDefaultArgs<ExtArgs>
+  }
+  export type VoucherItemIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    voucher?: boolean | VoucherDefaultArgs<ExtArgs>
+    stockItem?: boolean | StockItemDefaultArgs<ExtArgs>
+  }
+
+  export type $VoucherItemPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "VoucherItem"
+    objects: {
+      voucher: Prisma.$VoucherPayload<ExtArgs>
+      stockItem: Prisma.$StockItemPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      qty: Prisma.Decimal
+      rate: Prisma.Decimal
+      amount: Prisma.Decimal
+      voucherId: string
+      stockItemId: string
+    }, ExtArgs["result"]["voucherItem"]>
+    composites: {}
+  }
+
+  type VoucherItemGetPayload<S extends boolean | null | undefined | VoucherItemDefaultArgs> = $Result.GetResult<Prisma.$VoucherItemPayload, S>
+
+  type VoucherItemCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<VoucherItemFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: VoucherItemCountAggregateInputType | true
+    }
+
+  export interface VoucherItemDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['VoucherItem'], meta: { name: 'VoucherItem' } }
+    /**
+     * Find zero or one VoucherItem that matches the filter.
+     * @param {VoucherItemFindUniqueArgs} args - Arguments to find a VoucherItem
+     * @example
+     * // Get one VoucherItem
+     * const voucherItem = await prisma.voucherItem.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends VoucherItemFindUniqueArgs>(args: SelectSubset<T, VoucherItemFindUniqueArgs<ExtArgs>>): Prisma__VoucherItemClient<$Result.GetResult<Prisma.$VoucherItemPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one VoucherItem that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {VoucherItemFindUniqueOrThrowArgs} args - Arguments to find a VoucherItem
+     * @example
+     * // Get one VoucherItem
+     * const voucherItem = await prisma.voucherItem.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends VoucherItemFindUniqueOrThrowArgs>(args: SelectSubset<T, VoucherItemFindUniqueOrThrowArgs<ExtArgs>>): Prisma__VoucherItemClient<$Result.GetResult<Prisma.$VoucherItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first VoucherItem that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VoucherItemFindFirstArgs} args - Arguments to find a VoucherItem
+     * @example
+     * // Get one VoucherItem
+     * const voucherItem = await prisma.voucherItem.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends VoucherItemFindFirstArgs>(args?: SelectSubset<T, VoucherItemFindFirstArgs<ExtArgs>>): Prisma__VoucherItemClient<$Result.GetResult<Prisma.$VoucherItemPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first VoucherItem that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VoucherItemFindFirstOrThrowArgs} args - Arguments to find a VoucherItem
+     * @example
+     * // Get one VoucherItem
+     * const voucherItem = await prisma.voucherItem.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends VoucherItemFindFirstOrThrowArgs>(args?: SelectSubset<T, VoucherItemFindFirstOrThrowArgs<ExtArgs>>): Prisma__VoucherItemClient<$Result.GetResult<Prisma.$VoucherItemPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more VoucherItems that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VoucherItemFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all VoucherItems
+     * const voucherItems = await prisma.voucherItem.findMany()
+     * 
+     * // Get first 10 VoucherItems
+     * const voucherItems = await prisma.voucherItem.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const voucherItemWithIdOnly = await prisma.voucherItem.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends VoucherItemFindManyArgs>(args?: SelectSubset<T, VoucherItemFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VoucherItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a VoucherItem.
+     * @param {VoucherItemCreateArgs} args - Arguments to create a VoucherItem.
+     * @example
+     * // Create one VoucherItem
+     * const VoucherItem = await prisma.voucherItem.create({
+     *   data: {
+     *     // ... data to create a VoucherItem
+     *   }
+     * })
+     * 
+     */
+    create<T extends VoucherItemCreateArgs>(args: SelectSubset<T, VoucherItemCreateArgs<ExtArgs>>): Prisma__VoucherItemClient<$Result.GetResult<Prisma.$VoucherItemPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many VoucherItems.
+     * @param {VoucherItemCreateManyArgs} args - Arguments to create many VoucherItems.
+     * @example
+     * // Create many VoucherItems
+     * const voucherItem = await prisma.voucherItem.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends VoucherItemCreateManyArgs>(args?: SelectSubset<T, VoucherItemCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many VoucherItems and returns the data saved in the database.
+     * @param {VoucherItemCreateManyAndReturnArgs} args - Arguments to create many VoucherItems.
+     * @example
+     * // Create many VoucherItems
+     * const voucherItem = await prisma.voucherItem.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many VoucherItems and only return the `id`
+     * const voucherItemWithIdOnly = await prisma.voucherItem.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends VoucherItemCreateManyAndReturnArgs>(args?: SelectSubset<T, VoucherItemCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VoucherItemPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a VoucherItem.
+     * @param {VoucherItemDeleteArgs} args - Arguments to delete one VoucherItem.
+     * @example
+     * // Delete one VoucherItem
+     * const VoucherItem = await prisma.voucherItem.delete({
+     *   where: {
+     *     // ... filter to delete one VoucherItem
+     *   }
+     * })
+     * 
+     */
+    delete<T extends VoucherItemDeleteArgs>(args: SelectSubset<T, VoucherItemDeleteArgs<ExtArgs>>): Prisma__VoucherItemClient<$Result.GetResult<Prisma.$VoucherItemPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one VoucherItem.
+     * @param {VoucherItemUpdateArgs} args - Arguments to update one VoucherItem.
+     * @example
+     * // Update one VoucherItem
+     * const voucherItem = await prisma.voucherItem.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends VoucherItemUpdateArgs>(args: SelectSubset<T, VoucherItemUpdateArgs<ExtArgs>>): Prisma__VoucherItemClient<$Result.GetResult<Prisma.$VoucherItemPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more VoucherItems.
+     * @param {VoucherItemDeleteManyArgs} args - Arguments to filter VoucherItems to delete.
+     * @example
+     * // Delete a few VoucherItems
+     * const { count } = await prisma.voucherItem.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends VoucherItemDeleteManyArgs>(args?: SelectSubset<T, VoucherItemDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more VoucherItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VoucherItemUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many VoucherItems
+     * const voucherItem = await prisma.voucherItem.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends VoucherItemUpdateManyArgs>(args: SelectSubset<T, VoucherItemUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more VoucherItems and returns the data updated in the database.
+     * @param {VoucherItemUpdateManyAndReturnArgs} args - Arguments to update many VoucherItems.
+     * @example
+     * // Update many VoucherItems
+     * const voucherItem = await prisma.voucherItem.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more VoucherItems and only return the `id`
+     * const voucherItemWithIdOnly = await prisma.voucherItem.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends VoucherItemUpdateManyAndReturnArgs>(args: SelectSubset<T, VoucherItemUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VoucherItemPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one VoucherItem.
+     * @param {VoucherItemUpsertArgs} args - Arguments to update or create a VoucherItem.
+     * @example
+     * // Update or create a VoucherItem
+     * const voucherItem = await prisma.voucherItem.upsert({
+     *   create: {
+     *     // ... data to create a VoucherItem
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the VoucherItem we want to update
+     *   }
+     * })
+     */
+    upsert<T extends VoucherItemUpsertArgs>(args: SelectSubset<T, VoucherItemUpsertArgs<ExtArgs>>): Prisma__VoucherItemClient<$Result.GetResult<Prisma.$VoucherItemPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of VoucherItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VoucherItemCountArgs} args - Arguments to filter VoucherItems to count.
+     * @example
+     * // Count the number of VoucherItems
+     * const count = await prisma.voucherItem.count({
+     *   where: {
+     *     // ... the filter for the VoucherItems we want to count
+     *   }
+     * })
+    **/
+    count<T extends VoucherItemCountArgs>(
+      args?: Subset<T, VoucherItemCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], VoucherItemCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a VoucherItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VoucherItemAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends VoucherItemAggregateArgs>(args: Subset<T, VoucherItemAggregateArgs>): Prisma.PrismaPromise<GetVoucherItemAggregateType<T>>
+
+    /**
+     * Group by VoucherItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VoucherItemGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends VoucherItemGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: VoucherItemGroupByArgs['orderBy'] }
+        : { orderBy?: VoucherItemGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, VoucherItemGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVoucherItemGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the VoucherItem model
+   */
+  readonly fields: VoucherItemFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for VoucherItem.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__VoucherItemClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    voucher<T extends VoucherDefaultArgs<ExtArgs> = {}>(args?: Subset<T, VoucherDefaultArgs<ExtArgs>>): Prisma__VoucherClient<$Result.GetResult<Prisma.$VoucherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    stockItem<T extends StockItemDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StockItemDefaultArgs<ExtArgs>>): Prisma__StockItemClient<$Result.GetResult<Prisma.$StockItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the VoucherItem model
+   */
+  interface VoucherItemFieldRefs {
+    readonly id: FieldRef<"VoucherItem", 'String'>
+    readonly qty: FieldRef<"VoucherItem", 'Decimal'>
+    readonly rate: FieldRef<"VoucherItem", 'Decimal'>
+    readonly amount: FieldRef<"VoucherItem", 'Decimal'>
+    readonly voucherId: FieldRef<"VoucherItem", 'String'>
+    readonly stockItemId: FieldRef<"VoucherItem", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * VoucherItem findUnique
+   */
+  export type VoucherItemFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VoucherItem
+     */
+    select?: VoucherItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VoucherItem
+     */
+    omit?: VoucherItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoucherItemInclude<ExtArgs> | null
+    /**
+     * Filter, which VoucherItem to fetch.
+     */
+    where: VoucherItemWhereUniqueInput
+  }
+
+  /**
+   * VoucherItem findUniqueOrThrow
+   */
+  export type VoucherItemFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VoucherItem
+     */
+    select?: VoucherItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VoucherItem
+     */
+    omit?: VoucherItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoucherItemInclude<ExtArgs> | null
+    /**
+     * Filter, which VoucherItem to fetch.
+     */
+    where: VoucherItemWhereUniqueInput
+  }
+
+  /**
+   * VoucherItem findFirst
+   */
+  export type VoucherItemFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VoucherItem
+     */
+    select?: VoucherItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VoucherItem
+     */
+    omit?: VoucherItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoucherItemInclude<ExtArgs> | null
+    /**
+     * Filter, which VoucherItem to fetch.
+     */
+    where?: VoucherItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VoucherItems to fetch.
+     */
+    orderBy?: VoucherItemOrderByWithRelationInput | VoucherItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for VoucherItems.
+     */
+    cursor?: VoucherItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VoucherItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VoucherItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of VoucherItems.
+     */
+    distinct?: VoucherItemScalarFieldEnum | VoucherItemScalarFieldEnum[]
+  }
+
+  /**
+   * VoucherItem findFirstOrThrow
+   */
+  export type VoucherItemFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VoucherItem
+     */
+    select?: VoucherItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VoucherItem
+     */
+    omit?: VoucherItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoucherItemInclude<ExtArgs> | null
+    /**
+     * Filter, which VoucherItem to fetch.
+     */
+    where?: VoucherItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VoucherItems to fetch.
+     */
+    orderBy?: VoucherItemOrderByWithRelationInput | VoucherItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for VoucherItems.
+     */
+    cursor?: VoucherItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VoucherItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VoucherItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of VoucherItems.
+     */
+    distinct?: VoucherItemScalarFieldEnum | VoucherItemScalarFieldEnum[]
+  }
+
+  /**
+   * VoucherItem findMany
+   */
+  export type VoucherItemFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VoucherItem
+     */
+    select?: VoucherItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VoucherItem
+     */
+    omit?: VoucherItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoucherItemInclude<ExtArgs> | null
+    /**
+     * Filter, which VoucherItems to fetch.
+     */
+    where?: VoucherItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VoucherItems to fetch.
+     */
+    orderBy?: VoucherItemOrderByWithRelationInput | VoucherItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing VoucherItems.
+     */
+    cursor?: VoucherItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VoucherItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VoucherItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of VoucherItems.
+     */
+    distinct?: VoucherItemScalarFieldEnum | VoucherItemScalarFieldEnum[]
+  }
+
+  /**
+   * VoucherItem create
+   */
+  export type VoucherItemCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VoucherItem
+     */
+    select?: VoucherItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VoucherItem
+     */
+    omit?: VoucherItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoucherItemInclude<ExtArgs> | null
+    /**
+     * The data needed to create a VoucherItem.
+     */
+    data: XOR<VoucherItemCreateInput, VoucherItemUncheckedCreateInput>
+  }
+
+  /**
+   * VoucherItem createMany
+   */
+  export type VoucherItemCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many VoucherItems.
+     */
+    data: VoucherItemCreateManyInput | VoucherItemCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * VoucherItem createManyAndReturn
+   */
+  export type VoucherItemCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VoucherItem
+     */
+    select?: VoucherItemSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the VoucherItem
+     */
+    omit?: VoucherItemOmit<ExtArgs> | null
+    /**
+     * The data used to create many VoucherItems.
+     */
+    data: VoucherItemCreateManyInput | VoucherItemCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoucherItemIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * VoucherItem update
+   */
+  export type VoucherItemUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VoucherItem
+     */
+    select?: VoucherItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VoucherItem
+     */
+    omit?: VoucherItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoucherItemInclude<ExtArgs> | null
+    /**
+     * The data needed to update a VoucherItem.
+     */
+    data: XOR<VoucherItemUpdateInput, VoucherItemUncheckedUpdateInput>
+    /**
+     * Choose, which VoucherItem to update.
+     */
+    where: VoucherItemWhereUniqueInput
+  }
+
+  /**
+   * VoucherItem updateMany
+   */
+  export type VoucherItemUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update VoucherItems.
+     */
+    data: XOR<VoucherItemUpdateManyMutationInput, VoucherItemUncheckedUpdateManyInput>
+    /**
+     * Filter which VoucherItems to update
+     */
+    where?: VoucherItemWhereInput
+    /**
+     * Limit how many VoucherItems to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * VoucherItem updateManyAndReturn
+   */
+  export type VoucherItemUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VoucherItem
+     */
+    select?: VoucherItemSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the VoucherItem
+     */
+    omit?: VoucherItemOmit<ExtArgs> | null
+    /**
+     * The data used to update VoucherItems.
+     */
+    data: XOR<VoucherItemUpdateManyMutationInput, VoucherItemUncheckedUpdateManyInput>
+    /**
+     * Filter which VoucherItems to update
+     */
+    where?: VoucherItemWhereInput
+    /**
+     * Limit how many VoucherItems to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoucherItemIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * VoucherItem upsert
+   */
+  export type VoucherItemUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VoucherItem
+     */
+    select?: VoucherItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VoucherItem
+     */
+    omit?: VoucherItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoucherItemInclude<ExtArgs> | null
+    /**
+     * The filter to search for the VoucherItem to update in case it exists.
+     */
+    where: VoucherItemWhereUniqueInput
+    /**
+     * In case the VoucherItem found by the `where` argument doesn't exist, create a new VoucherItem with this data.
+     */
+    create: XOR<VoucherItemCreateInput, VoucherItemUncheckedCreateInput>
+    /**
+     * In case the VoucherItem was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<VoucherItemUpdateInput, VoucherItemUncheckedUpdateInput>
+  }
+
+  /**
+   * VoucherItem delete
+   */
+  export type VoucherItemDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VoucherItem
+     */
+    select?: VoucherItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VoucherItem
+     */
+    omit?: VoucherItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoucherItemInclude<ExtArgs> | null
+    /**
+     * Filter which VoucherItem to delete.
+     */
+    where: VoucherItemWhereUniqueInput
+  }
+
+  /**
+   * VoucherItem deleteMany
+   */
+  export type VoucherItemDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which VoucherItems to delete
+     */
+    where?: VoucherItemWhereInput
+    /**
+     * Limit how many VoucherItems to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * VoucherItem without action
+   */
+  export type VoucherItemDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VoucherItem
+     */
+    select?: VoucherItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VoucherItem
+     */
+    omit?: VoucherItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VoucherItemInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model GSTRecord
    */
 
@@ -19942,6 +21257,18 @@ export namespace Prisma {
   export type InventoryTransactionScalarFieldEnum = (typeof InventoryTransactionScalarFieldEnum)[keyof typeof InventoryTransactionScalarFieldEnum]
 
 
+  export const VoucherItemScalarFieldEnum: {
+    id: 'id',
+    qty: 'qty',
+    rate: 'rate',
+    amount: 'amount',
+    voucherId: 'voucherId',
+    stockItemId: 'stockItemId'
+  };
+
+  export type VoucherItemScalarFieldEnum = (typeof VoucherItemScalarFieldEnum)[keyof typeof VoucherItemScalarFieldEnum]
+
+
   export const GSTRecordScalarFieldEnum: {
     id: 'id',
     cgst: 'cgst',
@@ -20434,6 +21761,7 @@ export namespace Prisma {
     company?: XOR<CompanyScalarRelationFilter, CompanyWhereInput>
     stockGroup?: XOR<StockGroupNullableScalarRelationFilter, StockGroupWhereInput> | null
     unit?: XOR<UnitNullableScalarRelationFilter, UnitWhereInput> | null
+    voucherItems?: VoucherItemListRelationFilter
   }
 
   export type StockItemOrderByWithRelationInput = {
@@ -20450,6 +21778,7 @@ export namespace Prisma {
     company?: CompanyOrderByWithRelationInput
     stockGroup?: StockGroupOrderByWithRelationInput
     unit?: UnitOrderByWithRelationInput
+    voucherItems?: VoucherItemOrderByRelationAggregateInput
   }
 
   export type StockItemWhereUniqueInput = Prisma.AtLeast<{
@@ -20469,6 +21798,7 @@ export namespace Prisma {
     company?: XOR<CompanyScalarRelationFilter, CompanyWhereInput>
     stockGroup?: XOR<StockGroupNullableScalarRelationFilter, StockGroupWhereInput> | null
     unit?: XOR<UnitNullableScalarRelationFilter, UnitWhereInput> | null
+    voucherItems?: VoucherItemListRelationFilter
   }, "id">
 
   export type StockItemOrderByWithAggregationInput = {
@@ -20655,6 +21985,7 @@ export namespace Prisma {
     supplier?: XOR<SupplierNullableScalarRelationFilter, SupplierWhereInput> | null
     invoice?: XOR<InvoiceNullableScalarRelationFilter, InvoiceWhereInput> | null
     inventoryTransactions?: InventoryTransactionListRelationFilter
+    voucherItems?: VoucherItemListRelationFilter
   }
 
   export type VoucherOrderByWithRelationInput = {
@@ -20671,6 +22002,7 @@ export namespace Prisma {
     supplier?: SupplierOrderByWithRelationInput
     invoice?: InvoiceOrderByWithRelationInput
     inventoryTransactions?: InventoryTransactionOrderByRelationAggregateInput
+    voucherItems?: VoucherItemOrderByRelationAggregateInput
   }
 
   export type VoucherWhereUniqueInput = Prisma.AtLeast<{
@@ -20690,6 +22022,7 @@ export namespace Prisma {
     supplier?: XOR<SupplierNullableScalarRelationFilter, SupplierWhereInput> | null
     invoice?: XOR<InvoiceNullableScalarRelationFilter, InvoiceWhereInput> | null
     inventoryTransactions?: InventoryTransactionListRelationFilter
+    voucherItems?: VoucherItemListRelationFilter
   }, "id">
 
   export type VoucherOrderByWithAggregationInput = {
@@ -20916,6 +22249,71 @@ export namespace Prisma {
     date?: DateTimeWithAggregatesFilter<"InventoryTransaction"> | Date | string
     companyId?: StringWithAggregatesFilter<"InventoryTransaction"> | string
     voucherId?: StringNullableWithAggregatesFilter<"InventoryTransaction"> | string | null
+  }
+
+  export type VoucherItemWhereInput = {
+    AND?: VoucherItemWhereInput | VoucherItemWhereInput[]
+    OR?: VoucherItemWhereInput[]
+    NOT?: VoucherItemWhereInput | VoucherItemWhereInput[]
+    id?: StringFilter<"VoucherItem"> | string
+    qty?: DecimalFilter<"VoucherItem"> | Decimal | DecimalJsLike | number | string
+    rate?: DecimalFilter<"VoucherItem"> | Decimal | DecimalJsLike | number | string
+    amount?: DecimalFilter<"VoucherItem"> | Decimal | DecimalJsLike | number | string
+    voucherId?: StringFilter<"VoucherItem"> | string
+    stockItemId?: StringFilter<"VoucherItem"> | string
+    voucher?: XOR<VoucherScalarRelationFilter, VoucherWhereInput>
+    stockItem?: XOR<StockItemScalarRelationFilter, StockItemWhereInput>
+  }
+
+  export type VoucherItemOrderByWithRelationInput = {
+    id?: SortOrder
+    qty?: SortOrder
+    rate?: SortOrder
+    amount?: SortOrder
+    voucherId?: SortOrder
+    stockItemId?: SortOrder
+    voucher?: VoucherOrderByWithRelationInput
+    stockItem?: StockItemOrderByWithRelationInput
+  }
+
+  export type VoucherItemWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: VoucherItemWhereInput | VoucherItemWhereInput[]
+    OR?: VoucherItemWhereInput[]
+    NOT?: VoucherItemWhereInput | VoucherItemWhereInput[]
+    qty?: DecimalFilter<"VoucherItem"> | Decimal | DecimalJsLike | number | string
+    rate?: DecimalFilter<"VoucherItem"> | Decimal | DecimalJsLike | number | string
+    amount?: DecimalFilter<"VoucherItem"> | Decimal | DecimalJsLike | number | string
+    voucherId?: StringFilter<"VoucherItem"> | string
+    stockItemId?: StringFilter<"VoucherItem"> | string
+    voucher?: XOR<VoucherScalarRelationFilter, VoucherWhereInput>
+    stockItem?: XOR<StockItemScalarRelationFilter, StockItemWhereInput>
+  }, "id">
+
+  export type VoucherItemOrderByWithAggregationInput = {
+    id?: SortOrder
+    qty?: SortOrder
+    rate?: SortOrder
+    amount?: SortOrder
+    voucherId?: SortOrder
+    stockItemId?: SortOrder
+    _count?: VoucherItemCountOrderByAggregateInput
+    _avg?: VoucherItemAvgOrderByAggregateInput
+    _max?: VoucherItemMaxOrderByAggregateInput
+    _min?: VoucherItemMinOrderByAggregateInput
+    _sum?: VoucherItemSumOrderByAggregateInput
+  }
+
+  export type VoucherItemScalarWhereWithAggregatesInput = {
+    AND?: VoucherItemScalarWhereWithAggregatesInput | VoucherItemScalarWhereWithAggregatesInput[]
+    OR?: VoucherItemScalarWhereWithAggregatesInput[]
+    NOT?: VoucherItemScalarWhereWithAggregatesInput | VoucherItemScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"VoucherItem"> | string
+    qty?: DecimalWithAggregatesFilter<"VoucherItem"> | Decimal | DecimalJsLike | number | string
+    rate?: DecimalWithAggregatesFilter<"VoucherItem"> | Decimal | DecimalJsLike | number | string
+    amount?: DecimalWithAggregatesFilter<"VoucherItem"> | Decimal | DecimalJsLike | number | string
+    voucherId?: StringWithAggregatesFilter<"VoucherItem"> | string
+    stockItemId?: StringWithAggregatesFilter<"VoucherItem"> | string
   }
 
   export type GSTRecordWhereInput = {
@@ -21426,6 +22824,7 @@ export namespace Prisma {
     company: CompanyCreateNestedOneWithoutStockItemsInput
     stockGroup?: StockGroupCreateNestedOneWithoutStockItemsInput
     unit?: UnitCreateNestedOneWithoutStockItemsInput
+    voucherItems?: VoucherItemCreateNestedManyWithoutStockItemInput
   }
 
   export type StockItemUncheckedCreateInput = {
@@ -21439,6 +22838,7 @@ export namespace Prisma {
     companyId: string
     stockGroupId?: string | null
     unitId?: string | null
+    voucherItems?: VoucherItemUncheckedCreateNestedManyWithoutStockItemInput
   }
 
   export type StockItemUpdateInput = {
@@ -21452,6 +22852,7 @@ export namespace Prisma {
     company?: CompanyUpdateOneRequiredWithoutStockItemsNestedInput
     stockGroup?: StockGroupUpdateOneWithoutStockItemsNestedInput
     unit?: UnitUpdateOneWithoutStockItemsNestedInput
+    voucherItems?: VoucherItemUpdateManyWithoutStockItemNestedInput
   }
 
   export type StockItemUncheckedUpdateInput = {
@@ -21465,6 +22866,7 @@ export namespace Prisma {
     companyId?: StringFieldUpdateOperationsInput | string
     stockGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     unitId?: NullableStringFieldUpdateOperationsInput | string | null
+    voucherItems?: VoucherItemUncheckedUpdateManyWithoutStockItemNestedInput
   }
 
   export type StockItemCreateManyInput = {
@@ -21650,6 +23052,7 @@ export namespace Prisma {
     supplier?: SupplierCreateNestedOneWithoutVouchersInput
     invoice?: InvoiceCreateNestedOneWithoutVoucherInput
     inventoryTransactions?: InventoryTransactionCreateNestedManyWithoutVoucherInput
+    voucherItems?: VoucherItemCreateNestedManyWithoutVoucherInput
   }
 
   export type VoucherUncheckedCreateInput = {
@@ -21663,6 +23066,7 @@ export namespace Prisma {
     supplierId?: string | null
     invoice?: InvoiceUncheckedCreateNestedOneWithoutVoucherInput
     inventoryTransactions?: InventoryTransactionUncheckedCreateNestedManyWithoutVoucherInput
+    voucherItems?: VoucherItemUncheckedCreateNestedManyWithoutVoucherInput
   }
 
   export type VoucherUpdateInput = {
@@ -21676,6 +23080,7 @@ export namespace Prisma {
     supplier?: SupplierUpdateOneWithoutVouchersNestedInput
     invoice?: InvoiceUpdateOneWithoutVoucherNestedInput
     inventoryTransactions?: InventoryTransactionUpdateManyWithoutVoucherNestedInput
+    voucherItems?: VoucherItemUpdateManyWithoutVoucherNestedInput
   }
 
   export type VoucherUncheckedUpdateInput = {
@@ -21689,6 +23094,7 @@ export namespace Prisma {
     supplierId?: NullableStringFieldUpdateOperationsInput | string | null
     invoice?: InvoiceUncheckedUpdateOneWithoutVoucherNestedInput
     inventoryTransactions?: InventoryTransactionUncheckedUpdateManyWithoutVoucherNestedInput
+    voucherItems?: VoucherItemUncheckedUpdateManyWithoutVoucherNestedInput
   }
 
   export type VoucherCreateManyInput = {
@@ -21906,6 +23312,67 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     companyId?: StringFieldUpdateOperationsInput | string
     voucherId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type VoucherItemCreateInput = {
+    id?: string
+    qty: Decimal | DecimalJsLike | number | string
+    rate: Decimal | DecimalJsLike | number | string
+    amount: Decimal | DecimalJsLike | number | string
+    voucher: VoucherCreateNestedOneWithoutVoucherItemsInput
+    stockItem: StockItemCreateNestedOneWithoutVoucherItemsInput
+  }
+
+  export type VoucherItemUncheckedCreateInput = {
+    id?: string
+    qty: Decimal | DecimalJsLike | number | string
+    rate: Decimal | DecimalJsLike | number | string
+    amount: Decimal | DecimalJsLike | number | string
+    voucherId: string
+    stockItemId: string
+  }
+
+  export type VoucherItemUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    qty?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    rate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    voucher?: VoucherUpdateOneRequiredWithoutVoucherItemsNestedInput
+    stockItem?: StockItemUpdateOneRequiredWithoutVoucherItemsNestedInput
+  }
+
+  export type VoucherItemUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    qty?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    rate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    voucherId?: StringFieldUpdateOperationsInput | string
+    stockItemId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type VoucherItemCreateManyInput = {
+    id?: string
+    qty: Decimal | DecimalJsLike | number | string
+    rate: Decimal | DecimalJsLike | number | string
+    amount: Decimal | DecimalJsLike | number | string
+    voucherId: string
+    stockItemId: string
+  }
+
+  export type VoucherItemUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    qty?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    rate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+  }
+
+  export type VoucherItemUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    qty?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    rate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    voucherId?: StringFieldUpdateOperationsInput | string
+    stockItemId?: StringFieldUpdateOperationsInput | string
   }
 
   export type GSTRecordCreateInput = {
@@ -22402,6 +23869,16 @@ export namespace Prisma {
     isNot?: UnitWhereInput | null
   }
 
+  export type VoucherItemListRelationFilter = {
+    every?: VoucherItemWhereInput
+    some?: VoucherItemWhereInput
+    none?: VoucherItemWhereInput
+  }
+
+  export type VoucherItemOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type StockItemCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -22727,6 +24204,55 @@ export namespace Prisma {
 
   export type InventoryTransactionSumOrderByAggregateInput = {
     quantity?: SortOrder
+  }
+
+  export type VoucherScalarRelationFilter = {
+    is?: VoucherWhereInput
+    isNot?: VoucherWhereInput
+  }
+
+  export type StockItemScalarRelationFilter = {
+    is?: StockItemWhereInput
+    isNot?: StockItemWhereInput
+  }
+
+  export type VoucherItemCountOrderByAggregateInput = {
+    id?: SortOrder
+    qty?: SortOrder
+    rate?: SortOrder
+    amount?: SortOrder
+    voucherId?: SortOrder
+    stockItemId?: SortOrder
+  }
+
+  export type VoucherItemAvgOrderByAggregateInput = {
+    qty?: SortOrder
+    rate?: SortOrder
+    amount?: SortOrder
+  }
+
+  export type VoucherItemMaxOrderByAggregateInput = {
+    id?: SortOrder
+    qty?: SortOrder
+    rate?: SortOrder
+    amount?: SortOrder
+    voucherId?: SortOrder
+    stockItemId?: SortOrder
+  }
+
+  export type VoucherItemMinOrderByAggregateInput = {
+    id?: SortOrder
+    qty?: SortOrder
+    rate?: SortOrder
+    amount?: SortOrder
+    voucherId?: SortOrder
+    stockItemId?: SortOrder
+  }
+
+  export type VoucherItemSumOrderByAggregateInput = {
+    qty?: SortOrder
+    rate?: SortOrder
+    amount?: SortOrder
   }
 
   export type InvoiceScalarRelationFilter = {
@@ -23670,6 +25196,20 @@ export namespace Prisma {
     connect?: UnitWhereUniqueInput
   }
 
+  export type VoucherItemCreateNestedManyWithoutStockItemInput = {
+    create?: XOR<VoucherItemCreateWithoutStockItemInput, VoucherItemUncheckedCreateWithoutStockItemInput> | VoucherItemCreateWithoutStockItemInput[] | VoucherItemUncheckedCreateWithoutStockItemInput[]
+    connectOrCreate?: VoucherItemCreateOrConnectWithoutStockItemInput | VoucherItemCreateOrConnectWithoutStockItemInput[]
+    createMany?: VoucherItemCreateManyStockItemInputEnvelope
+    connect?: VoucherItemWhereUniqueInput | VoucherItemWhereUniqueInput[]
+  }
+
+  export type VoucherItemUncheckedCreateNestedManyWithoutStockItemInput = {
+    create?: XOR<VoucherItemCreateWithoutStockItemInput, VoucherItemUncheckedCreateWithoutStockItemInput> | VoucherItemCreateWithoutStockItemInput[] | VoucherItemUncheckedCreateWithoutStockItemInput[]
+    connectOrCreate?: VoucherItemCreateOrConnectWithoutStockItemInput | VoucherItemCreateOrConnectWithoutStockItemInput[]
+    createMany?: VoucherItemCreateManyStockItemInputEnvelope
+    connect?: VoucherItemWhereUniqueInput | VoucherItemWhereUniqueInput[]
+  }
+
   export type DecimalFieldUpdateOperationsInput = {
     set?: Decimal | DecimalJsLike | number | string
     increment?: Decimal | DecimalJsLike | number | string
@@ -23704,6 +25244,34 @@ export namespace Prisma {
     delete?: UnitWhereInput | boolean
     connect?: UnitWhereUniqueInput
     update?: XOR<XOR<UnitUpdateToOneWithWhereWithoutStockItemsInput, UnitUpdateWithoutStockItemsInput>, UnitUncheckedUpdateWithoutStockItemsInput>
+  }
+
+  export type VoucherItemUpdateManyWithoutStockItemNestedInput = {
+    create?: XOR<VoucherItemCreateWithoutStockItemInput, VoucherItemUncheckedCreateWithoutStockItemInput> | VoucherItemCreateWithoutStockItemInput[] | VoucherItemUncheckedCreateWithoutStockItemInput[]
+    connectOrCreate?: VoucherItemCreateOrConnectWithoutStockItemInput | VoucherItemCreateOrConnectWithoutStockItemInput[]
+    upsert?: VoucherItemUpsertWithWhereUniqueWithoutStockItemInput | VoucherItemUpsertWithWhereUniqueWithoutStockItemInput[]
+    createMany?: VoucherItemCreateManyStockItemInputEnvelope
+    set?: VoucherItemWhereUniqueInput | VoucherItemWhereUniqueInput[]
+    disconnect?: VoucherItemWhereUniqueInput | VoucherItemWhereUniqueInput[]
+    delete?: VoucherItemWhereUniqueInput | VoucherItemWhereUniqueInput[]
+    connect?: VoucherItemWhereUniqueInput | VoucherItemWhereUniqueInput[]
+    update?: VoucherItemUpdateWithWhereUniqueWithoutStockItemInput | VoucherItemUpdateWithWhereUniqueWithoutStockItemInput[]
+    updateMany?: VoucherItemUpdateManyWithWhereWithoutStockItemInput | VoucherItemUpdateManyWithWhereWithoutStockItemInput[]
+    deleteMany?: VoucherItemScalarWhereInput | VoucherItemScalarWhereInput[]
+  }
+
+  export type VoucherItemUncheckedUpdateManyWithoutStockItemNestedInput = {
+    create?: XOR<VoucherItemCreateWithoutStockItemInput, VoucherItemUncheckedCreateWithoutStockItemInput> | VoucherItemCreateWithoutStockItemInput[] | VoucherItemUncheckedCreateWithoutStockItemInput[]
+    connectOrCreate?: VoucherItemCreateOrConnectWithoutStockItemInput | VoucherItemCreateOrConnectWithoutStockItemInput[]
+    upsert?: VoucherItemUpsertWithWhereUniqueWithoutStockItemInput | VoucherItemUpsertWithWhereUniqueWithoutStockItemInput[]
+    createMany?: VoucherItemCreateManyStockItemInputEnvelope
+    set?: VoucherItemWhereUniqueInput | VoucherItemWhereUniqueInput[]
+    disconnect?: VoucherItemWhereUniqueInput | VoucherItemWhereUniqueInput[]
+    delete?: VoucherItemWhereUniqueInput | VoucherItemWhereUniqueInput[]
+    connect?: VoucherItemWhereUniqueInput | VoucherItemWhereUniqueInput[]
+    update?: VoucherItemUpdateWithWhereUniqueWithoutStockItemInput | VoucherItemUpdateWithWhereUniqueWithoutStockItemInput[]
+    updateMany?: VoucherItemUpdateManyWithWhereWithoutStockItemInput | VoucherItemUpdateManyWithWhereWithoutStockItemInput[]
+    deleteMany?: VoucherItemScalarWhereInput | VoucherItemScalarWhereInput[]
   }
 
   export type CompanyCreateNestedOneWithoutCustomersInput = {
@@ -23891,6 +25459,13 @@ export namespace Prisma {
     connect?: InventoryTransactionWhereUniqueInput | InventoryTransactionWhereUniqueInput[]
   }
 
+  export type VoucherItemCreateNestedManyWithoutVoucherInput = {
+    create?: XOR<VoucherItemCreateWithoutVoucherInput, VoucherItemUncheckedCreateWithoutVoucherInput> | VoucherItemCreateWithoutVoucherInput[] | VoucherItemUncheckedCreateWithoutVoucherInput[]
+    connectOrCreate?: VoucherItemCreateOrConnectWithoutVoucherInput | VoucherItemCreateOrConnectWithoutVoucherInput[]
+    createMany?: VoucherItemCreateManyVoucherInputEnvelope
+    connect?: VoucherItemWhereUniqueInput | VoucherItemWhereUniqueInput[]
+  }
+
   export type InvoiceUncheckedCreateNestedOneWithoutVoucherInput = {
     create?: XOR<InvoiceCreateWithoutVoucherInput, InvoiceUncheckedCreateWithoutVoucherInput>
     connectOrCreate?: InvoiceCreateOrConnectWithoutVoucherInput
@@ -23902,6 +25477,13 @@ export namespace Prisma {
     connectOrCreate?: InventoryTransactionCreateOrConnectWithoutVoucherInput | InventoryTransactionCreateOrConnectWithoutVoucherInput[]
     createMany?: InventoryTransactionCreateManyVoucherInputEnvelope
     connect?: InventoryTransactionWhereUniqueInput | InventoryTransactionWhereUniqueInput[]
+  }
+
+  export type VoucherItemUncheckedCreateNestedManyWithoutVoucherInput = {
+    create?: XOR<VoucherItemCreateWithoutVoucherInput, VoucherItemUncheckedCreateWithoutVoucherInput> | VoucherItemCreateWithoutVoucherInput[] | VoucherItemUncheckedCreateWithoutVoucherInput[]
+    connectOrCreate?: VoucherItemCreateOrConnectWithoutVoucherInput | VoucherItemCreateOrConnectWithoutVoucherInput[]
+    createMany?: VoucherItemCreateManyVoucherInputEnvelope
+    connect?: VoucherItemWhereUniqueInput | VoucherItemWhereUniqueInput[]
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -23960,6 +25542,20 @@ export namespace Prisma {
     deleteMany?: InventoryTransactionScalarWhereInput | InventoryTransactionScalarWhereInput[]
   }
 
+  export type VoucherItemUpdateManyWithoutVoucherNestedInput = {
+    create?: XOR<VoucherItemCreateWithoutVoucherInput, VoucherItemUncheckedCreateWithoutVoucherInput> | VoucherItemCreateWithoutVoucherInput[] | VoucherItemUncheckedCreateWithoutVoucherInput[]
+    connectOrCreate?: VoucherItemCreateOrConnectWithoutVoucherInput | VoucherItemCreateOrConnectWithoutVoucherInput[]
+    upsert?: VoucherItemUpsertWithWhereUniqueWithoutVoucherInput | VoucherItemUpsertWithWhereUniqueWithoutVoucherInput[]
+    createMany?: VoucherItemCreateManyVoucherInputEnvelope
+    set?: VoucherItemWhereUniqueInput | VoucherItemWhereUniqueInput[]
+    disconnect?: VoucherItemWhereUniqueInput | VoucherItemWhereUniqueInput[]
+    delete?: VoucherItemWhereUniqueInput | VoucherItemWhereUniqueInput[]
+    connect?: VoucherItemWhereUniqueInput | VoucherItemWhereUniqueInput[]
+    update?: VoucherItemUpdateWithWhereUniqueWithoutVoucherInput | VoucherItemUpdateWithWhereUniqueWithoutVoucherInput[]
+    updateMany?: VoucherItemUpdateManyWithWhereWithoutVoucherInput | VoucherItemUpdateManyWithWhereWithoutVoucherInput[]
+    deleteMany?: VoucherItemScalarWhereInput | VoucherItemScalarWhereInput[]
+  }
+
   export type InvoiceUncheckedUpdateOneWithoutVoucherNestedInput = {
     create?: XOR<InvoiceCreateWithoutVoucherInput, InvoiceUncheckedCreateWithoutVoucherInput>
     connectOrCreate?: InvoiceCreateOrConnectWithoutVoucherInput
@@ -23982,6 +25578,20 @@ export namespace Prisma {
     update?: InventoryTransactionUpdateWithWhereUniqueWithoutVoucherInput | InventoryTransactionUpdateWithWhereUniqueWithoutVoucherInput[]
     updateMany?: InventoryTransactionUpdateManyWithWhereWithoutVoucherInput | InventoryTransactionUpdateManyWithWhereWithoutVoucherInput[]
     deleteMany?: InventoryTransactionScalarWhereInput | InventoryTransactionScalarWhereInput[]
+  }
+
+  export type VoucherItemUncheckedUpdateManyWithoutVoucherNestedInput = {
+    create?: XOR<VoucherItemCreateWithoutVoucherInput, VoucherItemUncheckedCreateWithoutVoucherInput> | VoucherItemCreateWithoutVoucherInput[] | VoucherItemUncheckedCreateWithoutVoucherInput[]
+    connectOrCreate?: VoucherItemCreateOrConnectWithoutVoucherInput | VoucherItemCreateOrConnectWithoutVoucherInput[]
+    upsert?: VoucherItemUpsertWithWhereUniqueWithoutVoucherInput | VoucherItemUpsertWithWhereUniqueWithoutVoucherInput[]
+    createMany?: VoucherItemCreateManyVoucherInputEnvelope
+    set?: VoucherItemWhereUniqueInput | VoucherItemWhereUniqueInput[]
+    disconnect?: VoucherItemWhereUniqueInput | VoucherItemWhereUniqueInput[]
+    delete?: VoucherItemWhereUniqueInput | VoucherItemWhereUniqueInput[]
+    connect?: VoucherItemWhereUniqueInput | VoucherItemWhereUniqueInput[]
+    update?: VoucherItemUpdateWithWhereUniqueWithoutVoucherInput | VoucherItemUpdateWithWhereUniqueWithoutVoucherInput[]
+    updateMany?: VoucherItemUpdateManyWithWhereWithoutVoucherInput | VoucherItemUpdateManyWithWhereWithoutVoucherInput[]
+    deleteMany?: VoucherItemScalarWhereInput | VoucherItemScalarWhereInput[]
   }
 
   export type CompanyCreateNestedOneWithoutInvoicesInput = {
@@ -24112,6 +25722,34 @@ export namespace Prisma {
     delete?: VoucherWhereInput | boolean
     connect?: VoucherWhereUniqueInput
     update?: XOR<XOR<VoucherUpdateToOneWithWhereWithoutInventoryTransactionsInput, VoucherUpdateWithoutInventoryTransactionsInput>, VoucherUncheckedUpdateWithoutInventoryTransactionsInput>
+  }
+
+  export type VoucherCreateNestedOneWithoutVoucherItemsInput = {
+    create?: XOR<VoucherCreateWithoutVoucherItemsInput, VoucherUncheckedCreateWithoutVoucherItemsInput>
+    connectOrCreate?: VoucherCreateOrConnectWithoutVoucherItemsInput
+    connect?: VoucherWhereUniqueInput
+  }
+
+  export type StockItemCreateNestedOneWithoutVoucherItemsInput = {
+    create?: XOR<StockItemCreateWithoutVoucherItemsInput, StockItemUncheckedCreateWithoutVoucherItemsInput>
+    connectOrCreate?: StockItemCreateOrConnectWithoutVoucherItemsInput
+    connect?: StockItemWhereUniqueInput
+  }
+
+  export type VoucherUpdateOneRequiredWithoutVoucherItemsNestedInput = {
+    create?: XOR<VoucherCreateWithoutVoucherItemsInput, VoucherUncheckedCreateWithoutVoucherItemsInput>
+    connectOrCreate?: VoucherCreateOrConnectWithoutVoucherItemsInput
+    upsert?: VoucherUpsertWithoutVoucherItemsInput
+    connect?: VoucherWhereUniqueInput
+    update?: XOR<XOR<VoucherUpdateToOneWithWhereWithoutVoucherItemsInput, VoucherUpdateWithoutVoucherItemsInput>, VoucherUncheckedUpdateWithoutVoucherItemsInput>
+  }
+
+  export type StockItemUpdateOneRequiredWithoutVoucherItemsNestedInput = {
+    create?: XOR<StockItemCreateWithoutVoucherItemsInput, StockItemUncheckedCreateWithoutVoucherItemsInput>
+    connectOrCreate?: StockItemCreateOrConnectWithoutVoucherItemsInput
+    upsert?: StockItemUpsertWithoutVoucherItemsInput
+    connect?: StockItemWhereUniqueInput
+    update?: XOR<XOR<StockItemUpdateToOneWithWhereWithoutVoucherItemsInput, StockItemUpdateWithoutVoucherItemsInput>, StockItemUncheckedUpdateWithoutVoucherItemsInput>
   }
 
   export type CompanyCreateNestedOneWithoutGstRecordsInput = {
@@ -24566,6 +26204,7 @@ export namespace Prisma {
     gstPercentage: Decimal | DecimalJsLike | number | string
     stockGroup?: StockGroupCreateNestedOneWithoutStockItemsInput
     unit?: UnitCreateNestedOneWithoutStockItemsInput
+    voucherItems?: VoucherItemCreateNestedManyWithoutStockItemInput
   }
 
   export type StockItemUncheckedCreateWithoutCompanyInput = {
@@ -24578,6 +26217,7 @@ export namespace Prisma {
     gstPercentage: Decimal | DecimalJsLike | number | string
     stockGroupId?: string | null
     unitId?: string | null
+    voucherItems?: VoucherItemUncheckedCreateNestedManyWithoutStockItemInput
   }
 
   export type StockItemCreateOrConnectWithoutCompanyInput = {
@@ -24688,6 +26328,7 @@ export namespace Prisma {
     supplier?: SupplierCreateNestedOneWithoutVouchersInput
     invoice?: InvoiceCreateNestedOneWithoutVoucherInput
     inventoryTransactions?: InventoryTransactionCreateNestedManyWithoutVoucherInput
+    voucherItems?: VoucherItemCreateNestedManyWithoutVoucherInput
   }
 
   export type VoucherUncheckedCreateWithoutCompanyInput = {
@@ -24700,6 +26341,7 @@ export namespace Prisma {
     supplierId?: string | null
     invoice?: InvoiceUncheckedCreateNestedOneWithoutVoucherInput
     inventoryTransactions?: InventoryTransactionUncheckedCreateNestedManyWithoutVoucherInput
+    voucherItems?: VoucherItemUncheckedCreateNestedManyWithoutVoucherInput
   }
 
   export type VoucherCreateOrConnectWithoutCompanyInput = {
@@ -25544,6 +27186,7 @@ export namespace Prisma {
     gstPercentage: Decimal | DecimalJsLike | number | string
     company: CompanyCreateNestedOneWithoutStockItemsInput
     unit?: UnitCreateNestedOneWithoutStockItemsInput
+    voucherItems?: VoucherItemCreateNestedManyWithoutStockItemInput
   }
 
   export type StockItemUncheckedCreateWithoutStockGroupInput = {
@@ -25556,6 +27199,7 @@ export namespace Prisma {
     gstPercentage: Decimal | DecimalJsLike | number | string
     companyId: string
     unitId?: string | null
+    voucherItems?: VoucherItemUncheckedCreateNestedManyWithoutStockItemInput
   }
 
   export type StockItemCreateOrConnectWithoutStockGroupInput = {
@@ -25702,6 +27346,7 @@ export namespace Prisma {
     gstPercentage: Decimal | DecimalJsLike | number | string
     company: CompanyCreateNestedOneWithoutStockItemsInput
     stockGroup?: StockGroupCreateNestedOneWithoutStockItemsInput
+    voucherItems?: VoucherItemCreateNestedManyWithoutStockItemInput
   }
 
   export type StockItemUncheckedCreateWithoutUnitInput = {
@@ -25714,6 +27359,7 @@ export namespace Prisma {
     gstPercentage: Decimal | DecimalJsLike | number | string
     companyId: string
     stockGroupId?: string | null
+    voucherItems?: VoucherItemUncheckedCreateNestedManyWithoutStockItemInput
   }
 
   export type StockItemCreateOrConnectWithoutUnitInput = {
@@ -25884,6 +27530,32 @@ export namespace Prisma {
     create: XOR<UnitCreateWithoutStockItemsInput, UnitUncheckedCreateWithoutStockItemsInput>
   }
 
+  export type VoucherItemCreateWithoutStockItemInput = {
+    id?: string
+    qty: Decimal | DecimalJsLike | number | string
+    rate: Decimal | DecimalJsLike | number | string
+    amount: Decimal | DecimalJsLike | number | string
+    voucher: VoucherCreateNestedOneWithoutVoucherItemsInput
+  }
+
+  export type VoucherItemUncheckedCreateWithoutStockItemInput = {
+    id?: string
+    qty: Decimal | DecimalJsLike | number | string
+    rate: Decimal | DecimalJsLike | number | string
+    amount: Decimal | DecimalJsLike | number | string
+    voucherId: string
+  }
+
+  export type VoucherItemCreateOrConnectWithoutStockItemInput = {
+    where: VoucherItemWhereUniqueInput
+    create: XOR<VoucherItemCreateWithoutStockItemInput, VoucherItemUncheckedCreateWithoutStockItemInput>
+  }
+
+  export type VoucherItemCreateManyStockItemInputEnvelope = {
+    data: VoucherItemCreateManyStockItemInput | VoucherItemCreateManyStockItemInput[]
+    skipDuplicates?: boolean
+  }
+
   export type CompanyUpsertWithoutStockItemsInput = {
     update: XOR<CompanyUpdateWithoutStockItemsInput, CompanyUncheckedUpdateWithoutStockItemsInput>
     create: XOR<CompanyCreateWithoutStockItemsInput, CompanyUncheckedCreateWithoutStockItemsInput>
@@ -25987,6 +27659,34 @@ export namespace Prisma {
     companyId?: StringFieldUpdateOperationsInput | string
   }
 
+  export type VoucherItemUpsertWithWhereUniqueWithoutStockItemInput = {
+    where: VoucherItemWhereUniqueInput
+    update: XOR<VoucherItemUpdateWithoutStockItemInput, VoucherItemUncheckedUpdateWithoutStockItemInput>
+    create: XOR<VoucherItemCreateWithoutStockItemInput, VoucherItemUncheckedCreateWithoutStockItemInput>
+  }
+
+  export type VoucherItemUpdateWithWhereUniqueWithoutStockItemInput = {
+    where: VoucherItemWhereUniqueInput
+    data: XOR<VoucherItemUpdateWithoutStockItemInput, VoucherItemUncheckedUpdateWithoutStockItemInput>
+  }
+
+  export type VoucherItemUpdateManyWithWhereWithoutStockItemInput = {
+    where: VoucherItemScalarWhereInput
+    data: XOR<VoucherItemUpdateManyMutationInput, VoucherItemUncheckedUpdateManyWithoutStockItemInput>
+  }
+
+  export type VoucherItemScalarWhereInput = {
+    AND?: VoucherItemScalarWhereInput | VoucherItemScalarWhereInput[]
+    OR?: VoucherItemScalarWhereInput[]
+    NOT?: VoucherItemScalarWhereInput | VoucherItemScalarWhereInput[]
+    id?: StringFilter<"VoucherItem"> | string
+    qty?: DecimalFilter<"VoucherItem"> | Decimal | DecimalJsLike | number | string
+    rate?: DecimalFilter<"VoucherItem"> | Decimal | DecimalJsLike | number | string
+    amount?: DecimalFilter<"VoucherItem"> | Decimal | DecimalJsLike | number | string
+    voucherId?: StringFilter<"VoucherItem"> | string
+    stockItemId?: StringFilter<"VoucherItem"> | string
+  }
+
   export type CompanyCreateWithoutCustomersInput = {
     id?: string
     name: string
@@ -26048,6 +27748,7 @@ export namespace Prisma {
     supplier?: SupplierCreateNestedOneWithoutVouchersInput
     invoice?: InvoiceCreateNestedOneWithoutVoucherInput
     inventoryTransactions?: InventoryTransactionCreateNestedManyWithoutVoucherInput
+    voucherItems?: VoucherItemCreateNestedManyWithoutVoucherInput
   }
 
   export type VoucherUncheckedCreateWithoutCustomerInput = {
@@ -26060,6 +27761,7 @@ export namespace Prisma {
     supplierId?: string | null
     invoice?: InvoiceUncheckedCreateNestedOneWithoutVoucherInput
     inventoryTransactions?: InventoryTransactionUncheckedCreateNestedManyWithoutVoucherInput
+    voucherItems?: VoucherItemUncheckedCreateNestedManyWithoutVoucherInput
   }
 
   export type VoucherCreateOrConnectWithoutCustomerInput = {
@@ -26252,6 +27954,7 @@ export namespace Prisma {
     customer?: CustomerCreateNestedOneWithoutVouchersInput
     invoice?: InvoiceCreateNestedOneWithoutVoucherInput
     inventoryTransactions?: InventoryTransactionCreateNestedManyWithoutVoucherInput
+    voucherItems?: VoucherItemCreateNestedManyWithoutVoucherInput
   }
 
   export type VoucherUncheckedCreateWithoutSupplierInput = {
@@ -26264,6 +27967,7 @@ export namespace Prisma {
     customerId?: string | null
     invoice?: InvoiceUncheckedCreateNestedOneWithoutVoucherInput
     inventoryTransactions?: InventoryTransactionUncheckedCreateNestedManyWithoutVoucherInput
+    voucherItems?: VoucherItemUncheckedCreateNestedManyWithoutVoucherInput
   }
 
   export type VoucherCreateOrConnectWithoutSupplierInput = {
@@ -26499,6 +28203,32 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type VoucherItemCreateWithoutVoucherInput = {
+    id?: string
+    qty: Decimal | DecimalJsLike | number | string
+    rate: Decimal | DecimalJsLike | number | string
+    amount: Decimal | DecimalJsLike | number | string
+    stockItem: StockItemCreateNestedOneWithoutVoucherItemsInput
+  }
+
+  export type VoucherItemUncheckedCreateWithoutVoucherInput = {
+    id?: string
+    qty: Decimal | DecimalJsLike | number | string
+    rate: Decimal | DecimalJsLike | number | string
+    amount: Decimal | DecimalJsLike | number | string
+    stockItemId: string
+  }
+
+  export type VoucherItemCreateOrConnectWithoutVoucherInput = {
+    where: VoucherItemWhereUniqueInput
+    create: XOR<VoucherItemCreateWithoutVoucherInput, VoucherItemUncheckedCreateWithoutVoucherInput>
+  }
+
+  export type VoucherItemCreateManyVoucherInputEnvelope = {
+    data: VoucherItemCreateManyVoucherInput | VoucherItemCreateManyVoucherInput[]
+    skipDuplicates?: boolean
+  }
+
   export type CompanyUpsertWithoutVouchersInput = {
     update: XOR<CompanyUpdateWithoutVouchersInput, CompanyUncheckedUpdateWithoutVouchersInput>
     create: XOR<CompanyCreateWithoutVouchersInput, CompanyUncheckedCreateWithoutVouchersInput>
@@ -26663,6 +28393,22 @@ export namespace Prisma {
     data: XOR<InventoryTransactionUpdateManyMutationInput, InventoryTransactionUncheckedUpdateManyWithoutVoucherInput>
   }
 
+  export type VoucherItemUpsertWithWhereUniqueWithoutVoucherInput = {
+    where: VoucherItemWhereUniqueInput
+    update: XOR<VoucherItemUpdateWithoutVoucherInput, VoucherItemUncheckedUpdateWithoutVoucherInput>
+    create: XOR<VoucherItemCreateWithoutVoucherInput, VoucherItemUncheckedCreateWithoutVoucherInput>
+  }
+
+  export type VoucherItemUpdateWithWhereUniqueWithoutVoucherInput = {
+    where: VoucherItemWhereUniqueInput
+    data: XOR<VoucherItemUpdateWithoutVoucherInput, VoucherItemUncheckedUpdateWithoutVoucherInput>
+  }
+
+  export type VoucherItemUpdateManyWithWhereWithoutVoucherInput = {
+    where: VoucherItemScalarWhereInput
+    data: XOR<VoucherItemUpdateManyMutationInput, VoucherItemUncheckedUpdateManyWithoutVoucherInput>
+  }
+
   export type CompanyCreateWithoutInvoicesInput = {
     id?: string
     name: string
@@ -26749,6 +28495,7 @@ export namespace Prisma {
     customer?: CustomerCreateNestedOneWithoutVouchersInput
     supplier?: SupplierCreateNestedOneWithoutVouchersInput
     inventoryTransactions?: InventoryTransactionCreateNestedManyWithoutVoucherInput
+    voucherItems?: VoucherItemCreateNestedManyWithoutVoucherInput
   }
 
   export type VoucherUncheckedCreateWithoutInvoiceInput = {
@@ -26761,6 +28508,7 @@ export namespace Prisma {
     customerId?: string | null
     supplierId?: string | null
     inventoryTransactions?: InventoryTransactionUncheckedCreateNestedManyWithoutVoucherInput
+    voucherItems?: VoucherItemUncheckedCreateNestedManyWithoutVoucherInput
   }
 
   export type VoucherCreateOrConnectWithoutInvoiceInput = {
@@ -26903,6 +28651,7 @@ export namespace Prisma {
     customer?: CustomerUpdateOneWithoutVouchersNestedInput
     supplier?: SupplierUpdateOneWithoutVouchersNestedInput
     inventoryTransactions?: InventoryTransactionUpdateManyWithoutVoucherNestedInput
+    voucherItems?: VoucherItemUpdateManyWithoutVoucherNestedInput
   }
 
   export type VoucherUncheckedUpdateWithoutInvoiceInput = {
@@ -26915,6 +28664,7 @@ export namespace Prisma {
     customerId?: NullableStringFieldUpdateOperationsInput | string | null
     supplierId?: NullableStringFieldUpdateOperationsInput | string | null
     inventoryTransactions?: InventoryTransactionUncheckedUpdateManyWithoutVoucherNestedInput
+    voucherItems?: VoucherItemUncheckedUpdateManyWithoutVoucherNestedInput
   }
 
   export type GSTRecordUpsertWithWhereUniqueWithoutInvoiceInput = {
@@ -27102,6 +28852,7 @@ export namespace Prisma {
     customer?: CustomerCreateNestedOneWithoutVouchersInput
     supplier?: SupplierCreateNestedOneWithoutVouchersInput
     invoice?: InvoiceCreateNestedOneWithoutVoucherInput
+    voucherItems?: VoucherItemCreateNestedManyWithoutVoucherInput
   }
 
   export type VoucherUncheckedCreateWithoutInventoryTransactionsInput = {
@@ -27114,6 +28865,7 @@ export namespace Prisma {
     customerId?: string | null
     supplierId?: string | null
     invoice?: InvoiceUncheckedCreateNestedOneWithoutVoucherInput
+    voucherItems?: VoucherItemUncheckedCreateNestedManyWithoutVoucherInput
   }
 
   export type VoucherCreateOrConnectWithoutInventoryTransactionsInput = {
@@ -27199,6 +28951,7 @@ export namespace Prisma {
     customer?: CustomerUpdateOneWithoutVouchersNestedInput
     supplier?: SupplierUpdateOneWithoutVouchersNestedInput
     invoice?: InvoiceUpdateOneWithoutVoucherNestedInput
+    voucherItems?: VoucherItemUpdateManyWithoutVoucherNestedInput
   }
 
   export type VoucherUncheckedUpdateWithoutInventoryTransactionsInput = {
@@ -27211,6 +28964,143 @@ export namespace Prisma {
     customerId?: NullableStringFieldUpdateOperationsInput | string | null
     supplierId?: NullableStringFieldUpdateOperationsInput | string | null
     invoice?: InvoiceUncheckedUpdateOneWithoutVoucherNestedInput
+    voucherItems?: VoucherItemUncheckedUpdateManyWithoutVoucherNestedInput
+  }
+
+  export type VoucherCreateWithoutVoucherItemsInput = {
+    id?: string
+    voucherType: string
+    voucherNumber: string
+    date: Date | string
+    amount: Decimal | DecimalJsLike | number | string
+    company: CompanyCreateNestedOneWithoutVouchersInput
+    customer?: CustomerCreateNestedOneWithoutVouchersInput
+    supplier?: SupplierCreateNestedOneWithoutVouchersInput
+    invoice?: InvoiceCreateNestedOneWithoutVoucherInput
+    inventoryTransactions?: InventoryTransactionCreateNestedManyWithoutVoucherInput
+  }
+
+  export type VoucherUncheckedCreateWithoutVoucherItemsInput = {
+    id?: string
+    voucherType: string
+    voucherNumber: string
+    date: Date | string
+    amount: Decimal | DecimalJsLike | number | string
+    companyId: string
+    customerId?: string | null
+    supplierId?: string | null
+    invoice?: InvoiceUncheckedCreateNestedOneWithoutVoucherInput
+    inventoryTransactions?: InventoryTransactionUncheckedCreateNestedManyWithoutVoucherInput
+  }
+
+  export type VoucherCreateOrConnectWithoutVoucherItemsInput = {
+    where: VoucherWhereUniqueInput
+    create: XOR<VoucherCreateWithoutVoucherItemsInput, VoucherUncheckedCreateWithoutVoucherItemsInput>
+  }
+
+  export type StockItemCreateWithoutVoucherItemsInput = {
+    id?: string
+    name: string
+    sku: string
+    purchasePrice: Decimal | DecimalJsLike | number | string
+    sellingPrice: Decimal | DecimalJsLike | number | string
+    quantity: Decimal | DecimalJsLike | number | string
+    gstPercentage: Decimal | DecimalJsLike | number | string
+    company: CompanyCreateNestedOneWithoutStockItemsInput
+    stockGroup?: StockGroupCreateNestedOneWithoutStockItemsInput
+    unit?: UnitCreateNestedOneWithoutStockItemsInput
+  }
+
+  export type StockItemUncheckedCreateWithoutVoucherItemsInput = {
+    id?: string
+    name: string
+    sku: string
+    purchasePrice: Decimal | DecimalJsLike | number | string
+    sellingPrice: Decimal | DecimalJsLike | number | string
+    quantity: Decimal | DecimalJsLike | number | string
+    gstPercentage: Decimal | DecimalJsLike | number | string
+    companyId: string
+    stockGroupId?: string | null
+    unitId?: string | null
+  }
+
+  export type StockItemCreateOrConnectWithoutVoucherItemsInput = {
+    where: StockItemWhereUniqueInput
+    create: XOR<StockItemCreateWithoutVoucherItemsInput, StockItemUncheckedCreateWithoutVoucherItemsInput>
+  }
+
+  export type VoucherUpsertWithoutVoucherItemsInput = {
+    update: XOR<VoucherUpdateWithoutVoucherItemsInput, VoucherUncheckedUpdateWithoutVoucherItemsInput>
+    create: XOR<VoucherCreateWithoutVoucherItemsInput, VoucherUncheckedCreateWithoutVoucherItemsInput>
+    where?: VoucherWhereInput
+  }
+
+  export type VoucherUpdateToOneWithWhereWithoutVoucherItemsInput = {
+    where?: VoucherWhereInput
+    data: XOR<VoucherUpdateWithoutVoucherItemsInput, VoucherUncheckedUpdateWithoutVoucherItemsInput>
+  }
+
+  export type VoucherUpdateWithoutVoucherItemsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    voucherType?: StringFieldUpdateOperationsInput | string
+    voucherNumber?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    company?: CompanyUpdateOneRequiredWithoutVouchersNestedInput
+    customer?: CustomerUpdateOneWithoutVouchersNestedInput
+    supplier?: SupplierUpdateOneWithoutVouchersNestedInput
+    invoice?: InvoiceUpdateOneWithoutVoucherNestedInput
+    inventoryTransactions?: InventoryTransactionUpdateManyWithoutVoucherNestedInput
+  }
+
+  export type VoucherUncheckedUpdateWithoutVoucherItemsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    voucherType?: StringFieldUpdateOperationsInput | string
+    voucherNumber?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    companyId?: StringFieldUpdateOperationsInput | string
+    customerId?: NullableStringFieldUpdateOperationsInput | string | null
+    supplierId?: NullableStringFieldUpdateOperationsInput | string | null
+    invoice?: InvoiceUncheckedUpdateOneWithoutVoucherNestedInput
+    inventoryTransactions?: InventoryTransactionUncheckedUpdateManyWithoutVoucherNestedInput
+  }
+
+  export type StockItemUpsertWithoutVoucherItemsInput = {
+    update: XOR<StockItemUpdateWithoutVoucherItemsInput, StockItemUncheckedUpdateWithoutVoucherItemsInput>
+    create: XOR<StockItemCreateWithoutVoucherItemsInput, StockItemUncheckedCreateWithoutVoucherItemsInput>
+    where?: StockItemWhereInput
+  }
+
+  export type StockItemUpdateToOneWithWhereWithoutVoucherItemsInput = {
+    where?: StockItemWhereInput
+    data: XOR<StockItemUpdateWithoutVoucherItemsInput, StockItemUncheckedUpdateWithoutVoucherItemsInput>
+  }
+
+  export type StockItemUpdateWithoutVoucherItemsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
+    purchasePrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    sellingPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    quantity?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    gstPercentage?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    company?: CompanyUpdateOneRequiredWithoutStockItemsNestedInput
+    stockGroup?: StockGroupUpdateOneWithoutStockItemsNestedInput
+    unit?: UnitUpdateOneWithoutStockItemsNestedInput
+  }
+
+  export type StockItemUncheckedUpdateWithoutVoucherItemsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    sku?: StringFieldUpdateOperationsInput | string
+    purchasePrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    sellingPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    quantity?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    gstPercentage?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    companyId?: StringFieldUpdateOperationsInput | string
+    stockGroupId?: NullableStringFieldUpdateOperationsInput | string | null
+    unitId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type CompanyCreateWithoutGstRecordsInput = {
@@ -27808,6 +29698,7 @@ export namespace Prisma {
     gstPercentage?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     stockGroup?: StockGroupUpdateOneWithoutStockItemsNestedInput
     unit?: UnitUpdateOneWithoutStockItemsNestedInput
+    voucherItems?: VoucherItemUpdateManyWithoutStockItemNestedInput
   }
 
   export type StockItemUncheckedUpdateWithoutCompanyInput = {
@@ -27820,6 +29711,7 @@ export namespace Prisma {
     gstPercentage?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     stockGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     unitId?: NullableStringFieldUpdateOperationsInput | string | null
+    voucherItems?: VoucherItemUncheckedUpdateManyWithoutStockItemNestedInput
   }
 
   export type StockItemUncheckedUpdateManyWithoutCompanyInput = {
@@ -27927,6 +29819,7 @@ export namespace Prisma {
     supplier?: SupplierUpdateOneWithoutVouchersNestedInput
     invoice?: InvoiceUpdateOneWithoutVoucherNestedInput
     inventoryTransactions?: InventoryTransactionUpdateManyWithoutVoucherNestedInput
+    voucherItems?: VoucherItemUpdateManyWithoutVoucherNestedInput
   }
 
   export type VoucherUncheckedUpdateWithoutCompanyInput = {
@@ -27939,6 +29832,7 @@ export namespace Prisma {
     supplierId?: NullableStringFieldUpdateOperationsInput | string | null
     invoice?: InvoiceUncheckedUpdateOneWithoutVoucherNestedInput
     inventoryTransactions?: InventoryTransactionUncheckedUpdateManyWithoutVoucherNestedInput
+    voucherItems?: VoucherItemUncheckedUpdateManyWithoutVoucherNestedInput
   }
 
   export type VoucherUncheckedUpdateManyWithoutCompanyInput = {
@@ -28091,6 +29985,7 @@ export namespace Prisma {
     gstPercentage?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     company?: CompanyUpdateOneRequiredWithoutStockItemsNestedInput
     unit?: UnitUpdateOneWithoutStockItemsNestedInput
+    voucherItems?: VoucherItemUpdateManyWithoutStockItemNestedInput
   }
 
   export type StockItemUncheckedUpdateWithoutStockGroupInput = {
@@ -28103,6 +29998,7 @@ export namespace Prisma {
     gstPercentage?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     companyId?: StringFieldUpdateOperationsInput | string
     unitId?: NullableStringFieldUpdateOperationsInput | string | null
+    voucherItems?: VoucherItemUncheckedUpdateManyWithoutStockItemNestedInput
   }
 
   export type StockItemUncheckedUpdateManyWithoutStockGroupInput = {
@@ -28139,6 +30035,7 @@ export namespace Prisma {
     gstPercentage?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     company?: CompanyUpdateOneRequiredWithoutStockItemsNestedInput
     stockGroup?: StockGroupUpdateOneWithoutStockItemsNestedInput
+    voucherItems?: VoucherItemUpdateManyWithoutStockItemNestedInput
   }
 
   export type StockItemUncheckedUpdateWithoutUnitInput = {
@@ -28151,6 +30048,7 @@ export namespace Prisma {
     gstPercentage?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     companyId?: StringFieldUpdateOperationsInput | string
     stockGroupId?: NullableStringFieldUpdateOperationsInput | string | null
+    voucherItems?: VoucherItemUncheckedUpdateManyWithoutStockItemNestedInput
   }
 
   export type StockItemUncheckedUpdateManyWithoutUnitInput = {
@@ -28163,6 +30061,38 @@ export namespace Prisma {
     gstPercentage?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     companyId?: StringFieldUpdateOperationsInput | string
     stockGroupId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type VoucherItemCreateManyStockItemInput = {
+    id?: string
+    qty: Decimal | DecimalJsLike | number | string
+    rate: Decimal | DecimalJsLike | number | string
+    amount: Decimal | DecimalJsLike | number | string
+    voucherId: string
+  }
+
+  export type VoucherItemUpdateWithoutStockItemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    qty?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    rate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    voucher?: VoucherUpdateOneRequiredWithoutVoucherItemsNestedInput
+  }
+
+  export type VoucherItemUncheckedUpdateWithoutStockItemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    qty?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    rate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    voucherId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type VoucherItemUncheckedUpdateManyWithoutStockItemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    qty?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    rate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    voucherId?: StringFieldUpdateOperationsInput | string
   }
 
   export type VoucherCreateManyCustomerInput = {
@@ -28194,6 +30124,7 @@ export namespace Prisma {
     supplier?: SupplierUpdateOneWithoutVouchersNestedInput
     invoice?: InvoiceUpdateOneWithoutVoucherNestedInput
     inventoryTransactions?: InventoryTransactionUpdateManyWithoutVoucherNestedInput
+    voucherItems?: VoucherItemUpdateManyWithoutVoucherNestedInput
   }
 
   export type VoucherUncheckedUpdateWithoutCustomerInput = {
@@ -28206,6 +30137,7 @@ export namespace Prisma {
     supplierId?: NullableStringFieldUpdateOperationsInput | string | null
     invoice?: InvoiceUncheckedUpdateOneWithoutVoucherNestedInput
     inventoryTransactions?: InventoryTransactionUncheckedUpdateManyWithoutVoucherNestedInput
+    voucherItems?: VoucherItemUncheckedUpdateManyWithoutVoucherNestedInput
   }
 
   export type VoucherUncheckedUpdateManyWithoutCustomerInput = {
@@ -28267,6 +30199,7 @@ export namespace Prisma {
     customer?: CustomerUpdateOneWithoutVouchersNestedInput
     invoice?: InvoiceUpdateOneWithoutVoucherNestedInput
     inventoryTransactions?: InventoryTransactionUpdateManyWithoutVoucherNestedInput
+    voucherItems?: VoucherItemUpdateManyWithoutVoucherNestedInput
   }
 
   export type VoucherUncheckedUpdateWithoutSupplierInput = {
@@ -28279,6 +30212,7 @@ export namespace Prisma {
     customerId?: NullableStringFieldUpdateOperationsInput | string | null
     invoice?: InvoiceUncheckedUpdateOneWithoutVoucherNestedInput
     inventoryTransactions?: InventoryTransactionUncheckedUpdateManyWithoutVoucherNestedInput
+    voucherItems?: VoucherItemUncheckedUpdateManyWithoutVoucherNestedInput
   }
 
   export type VoucherUncheckedUpdateManyWithoutSupplierInput = {
@@ -28297,6 +30231,14 @@ export namespace Prisma {
     quantity: Decimal | DecimalJsLike | number | string
     date: Date | string
     companyId: string
+  }
+
+  export type VoucherItemCreateManyVoucherInput = {
+    id?: string
+    qty: Decimal | DecimalJsLike | number | string
+    rate: Decimal | DecimalJsLike | number | string
+    amount: Decimal | DecimalJsLike | number | string
+    stockItemId: string
   }
 
   export type InventoryTransactionUpdateWithoutVoucherInput = {
@@ -28321,6 +30263,30 @@ export namespace Prisma {
     quantity?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     companyId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type VoucherItemUpdateWithoutVoucherInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    qty?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    rate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    stockItem?: StockItemUpdateOneRequiredWithoutVoucherItemsNestedInput
+  }
+
+  export type VoucherItemUncheckedUpdateWithoutVoucherInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    qty?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    rate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    stockItemId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type VoucherItemUncheckedUpdateManyWithoutVoucherInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    qty?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    rate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    stockItemId?: StringFieldUpdateOperationsInput | string
   }
 
   export type GSTRecordCreateManyInvoiceInput = {

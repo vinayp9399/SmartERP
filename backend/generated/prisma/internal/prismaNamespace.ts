@@ -397,6 +397,7 @@ export const ModelName = {
   Invoice: 'Invoice',
   Transaction: 'Transaction',
   InventoryTransaction: 'InventoryTransaction',
+  VoucherItem: 'VoucherItem',
   GSTRecord: 'GSTRecord',
   AuditLog: 'AuditLog'
 } as const
@@ -414,7 +415,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "company" | "group" | "ledger" | "stockGroup" | "unit" | "stockItem" | "customer" | "supplier" | "voucher" | "invoice" | "transaction" | "inventoryTransaction" | "gSTRecord" | "auditLog"
+    modelProps: "user" | "company" | "group" | "ledger" | "stockGroup" | "unit" | "stockItem" | "customer" | "supplier" | "voucher" | "invoice" | "transaction" | "inventoryTransaction" | "voucherItem" | "gSTRecord" | "auditLog"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1380,6 +1381,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    VoucherItem: {
+      payload: Prisma.$VoucherItemPayload<ExtArgs>
+      fields: Prisma.VoucherItemFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.VoucherItemFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoucherItemPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.VoucherItemFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoucherItemPayload>
+        }
+        findFirst: {
+          args: Prisma.VoucherItemFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoucherItemPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.VoucherItemFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoucherItemPayload>
+        }
+        findMany: {
+          args: Prisma.VoucherItemFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoucherItemPayload>[]
+        }
+        create: {
+          args: Prisma.VoucherItemCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoucherItemPayload>
+        }
+        createMany: {
+          args: Prisma.VoucherItemCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.VoucherItemCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoucherItemPayload>[]
+        }
+        delete: {
+          args: Prisma.VoucherItemDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoucherItemPayload>
+        }
+        update: {
+          args: Prisma.VoucherItemUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoucherItemPayload>
+        }
+        deleteMany: {
+          args: Prisma.VoucherItemDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.VoucherItemUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.VoucherItemUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoucherItemPayload>[]
+        }
+        upsert: {
+          args: Prisma.VoucherItemUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VoucherItemPayload>
+        }
+        aggregate: {
+          args: Prisma.VoucherItemAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateVoucherItem>
+        }
+        groupBy: {
+          args: Prisma.VoucherItemGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.VoucherItemGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.VoucherItemCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.VoucherItemCountAggregateOutputType> | number
+        }
+      }
+    }
     GSTRecord: {
       payload: Prisma.$GSTRecordPayload<ExtArgs>
       fields: Prisma.GSTRecordFieldRefs
@@ -1719,6 +1794,18 @@ export const InventoryTransactionScalarFieldEnum = {
 export type InventoryTransactionScalarFieldEnum = (typeof InventoryTransactionScalarFieldEnum)[keyof typeof InventoryTransactionScalarFieldEnum]
 
 
+export const VoucherItemScalarFieldEnum = {
+  id: 'id',
+  qty: 'qty',
+  rate: 'rate',
+  amount: 'amount',
+  voucherId: 'voucherId',
+  stockItemId: 'stockItemId'
+} as const
+
+export type VoucherItemScalarFieldEnum = (typeof VoucherItemScalarFieldEnum)[keyof typeof VoucherItemScalarFieldEnum]
+
+
 export const GSTRecordScalarFieldEnum = {
   id: 'id',
   cgst: 'cgst',
@@ -1950,6 +2037,7 @@ export type GlobalOmitConfig = {
   invoice?: Prisma.InvoiceOmit
   transaction?: Prisma.TransactionOmit
   inventoryTransaction?: Prisma.InventoryTransactionOmit
+  voucherItem?: Prisma.VoucherItemOmit
   gSTRecord?: Prisma.GSTRecordOmit
   auditLog?: Prisma.AuditLogOmit
 }

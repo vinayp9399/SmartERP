@@ -245,6 +245,7 @@ export type VoucherWhereInput = {
   supplier?: Prisma.XOR<Prisma.SupplierNullableScalarRelationFilter, Prisma.SupplierWhereInput> | null
   invoice?: Prisma.XOR<Prisma.InvoiceNullableScalarRelationFilter, Prisma.InvoiceWhereInput> | null
   inventoryTransactions?: Prisma.InventoryTransactionListRelationFilter
+  voucherItems?: Prisma.VoucherItemListRelationFilter
 }
 
 export type VoucherOrderByWithRelationInput = {
@@ -261,6 +262,7 @@ export type VoucherOrderByWithRelationInput = {
   supplier?: Prisma.SupplierOrderByWithRelationInput
   invoice?: Prisma.InvoiceOrderByWithRelationInput
   inventoryTransactions?: Prisma.InventoryTransactionOrderByRelationAggregateInput
+  voucherItems?: Prisma.VoucherItemOrderByRelationAggregateInput
 }
 
 export type VoucherWhereUniqueInput = Prisma.AtLeast<{
@@ -280,6 +282,7 @@ export type VoucherWhereUniqueInput = Prisma.AtLeast<{
   supplier?: Prisma.XOR<Prisma.SupplierNullableScalarRelationFilter, Prisma.SupplierWhereInput> | null
   invoice?: Prisma.XOR<Prisma.InvoiceNullableScalarRelationFilter, Prisma.InvoiceWhereInput> | null
   inventoryTransactions?: Prisma.InventoryTransactionListRelationFilter
+  voucherItems?: Prisma.VoucherItemListRelationFilter
 }, "id">
 
 export type VoucherOrderByWithAggregationInput = {
@@ -323,6 +326,7 @@ export type VoucherCreateInput = {
   supplier?: Prisma.SupplierCreateNestedOneWithoutVouchersInput
   invoice?: Prisma.InvoiceCreateNestedOneWithoutVoucherInput
   inventoryTransactions?: Prisma.InventoryTransactionCreateNestedManyWithoutVoucherInput
+  voucherItems?: Prisma.VoucherItemCreateNestedManyWithoutVoucherInput
 }
 
 export type VoucherUncheckedCreateInput = {
@@ -336,6 +340,7 @@ export type VoucherUncheckedCreateInput = {
   supplierId?: string | null
   invoice?: Prisma.InvoiceUncheckedCreateNestedOneWithoutVoucherInput
   inventoryTransactions?: Prisma.InventoryTransactionUncheckedCreateNestedManyWithoutVoucherInput
+  voucherItems?: Prisma.VoucherItemUncheckedCreateNestedManyWithoutVoucherInput
 }
 
 export type VoucherUpdateInput = {
@@ -349,6 +354,7 @@ export type VoucherUpdateInput = {
   supplier?: Prisma.SupplierUpdateOneWithoutVouchersNestedInput
   invoice?: Prisma.InvoiceUpdateOneWithoutVoucherNestedInput
   inventoryTransactions?: Prisma.InventoryTransactionUpdateManyWithoutVoucherNestedInput
+  voucherItems?: Prisma.VoucherItemUpdateManyWithoutVoucherNestedInput
 }
 
 export type VoucherUncheckedUpdateInput = {
@@ -362,6 +368,7 @@ export type VoucherUncheckedUpdateInput = {
   supplierId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   invoice?: Prisma.InvoiceUncheckedUpdateOneWithoutVoucherNestedInput
   inventoryTransactions?: Prisma.InventoryTransactionUncheckedUpdateManyWithoutVoucherNestedInput
+  voucherItems?: Prisma.VoucherItemUncheckedUpdateManyWithoutVoucherNestedInput
 }
 
 export type VoucherCreateManyInput = {
@@ -448,6 +455,11 @@ export type VoucherSumOrderByAggregateInput = {
 export type VoucherNullableScalarRelationFilter = {
   is?: Prisma.VoucherWhereInput | null
   isNot?: Prisma.VoucherWhereInput | null
+}
+
+export type VoucherScalarRelationFilter = {
+  is?: Prisma.VoucherWhereInput
+  isNot?: Prisma.VoucherWhereInput
 }
 
 export type VoucherCreateNestedManyWithoutCompanyInput = {
@@ -612,6 +624,20 @@ export type VoucherUpdateOneWithoutInventoryTransactionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.VoucherUpdateToOneWithWhereWithoutInventoryTransactionsInput, Prisma.VoucherUpdateWithoutInventoryTransactionsInput>, Prisma.VoucherUncheckedUpdateWithoutInventoryTransactionsInput>
 }
 
+export type VoucherCreateNestedOneWithoutVoucherItemsInput = {
+  create?: Prisma.XOR<Prisma.VoucherCreateWithoutVoucherItemsInput, Prisma.VoucherUncheckedCreateWithoutVoucherItemsInput>
+  connectOrCreate?: Prisma.VoucherCreateOrConnectWithoutVoucherItemsInput
+  connect?: Prisma.VoucherWhereUniqueInput
+}
+
+export type VoucherUpdateOneRequiredWithoutVoucherItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.VoucherCreateWithoutVoucherItemsInput, Prisma.VoucherUncheckedCreateWithoutVoucherItemsInput>
+  connectOrCreate?: Prisma.VoucherCreateOrConnectWithoutVoucherItemsInput
+  upsert?: Prisma.VoucherUpsertWithoutVoucherItemsInput
+  connect?: Prisma.VoucherWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.VoucherUpdateToOneWithWhereWithoutVoucherItemsInput, Prisma.VoucherUpdateWithoutVoucherItemsInput>, Prisma.VoucherUncheckedUpdateWithoutVoucherItemsInput>
+}
+
 export type VoucherCreateWithoutCompanyInput = {
   id?: string
   voucherType: string
@@ -622,6 +648,7 @@ export type VoucherCreateWithoutCompanyInput = {
   supplier?: Prisma.SupplierCreateNestedOneWithoutVouchersInput
   invoice?: Prisma.InvoiceCreateNestedOneWithoutVoucherInput
   inventoryTransactions?: Prisma.InventoryTransactionCreateNestedManyWithoutVoucherInput
+  voucherItems?: Prisma.VoucherItemCreateNestedManyWithoutVoucherInput
 }
 
 export type VoucherUncheckedCreateWithoutCompanyInput = {
@@ -634,6 +661,7 @@ export type VoucherUncheckedCreateWithoutCompanyInput = {
   supplierId?: string | null
   invoice?: Prisma.InvoiceUncheckedCreateNestedOneWithoutVoucherInput
   inventoryTransactions?: Prisma.InventoryTransactionUncheckedCreateNestedManyWithoutVoucherInput
+  voucherItems?: Prisma.VoucherItemUncheckedCreateNestedManyWithoutVoucherInput
 }
 
 export type VoucherCreateOrConnectWithoutCompanyInput = {
@@ -686,6 +714,7 @@ export type VoucherCreateWithoutCustomerInput = {
   supplier?: Prisma.SupplierCreateNestedOneWithoutVouchersInput
   invoice?: Prisma.InvoiceCreateNestedOneWithoutVoucherInput
   inventoryTransactions?: Prisma.InventoryTransactionCreateNestedManyWithoutVoucherInput
+  voucherItems?: Prisma.VoucherItemCreateNestedManyWithoutVoucherInput
 }
 
 export type VoucherUncheckedCreateWithoutCustomerInput = {
@@ -698,6 +727,7 @@ export type VoucherUncheckedCreateWithoutCustomerInput = {
   supplierId?: string | null
   invoice?: Prisma.InvoiceUncheckedCreateNestedOneWithoutVoucherInput
   inventoryTransactions?: Prisma.InventoryTransactionUncheckedCreateNestedManyWithoutVoucherInput
+  voucherItems?: Prisma.VoucherItemUncheckedCreateNestedManyWithoutVoucherInput
 }
 
 export type VoucherCreateOrConnectWithoutCustomerInput = {
@@ -736,6 +766,7 @@ export type VoucherCreateWithoutSupplierInput = {
   customer?: Prisma.CustomerCreateNestedOneWithoutVouchersInput
   invoice?: Prisma.InvoiceCreateNestedOneWithoutVoucherInput
   inventoryTransactions?: Prisma.InventoryTransactionCreateNestedManyWithoutVoucherInput
+  voucherItems?: Prisma.VoucherItemCreateNestedManyWithoutVoucherInput
 }
 
 export type VoucherUncheckedCreateWithoutSupplierInput = {
@@ -748,6 +779,7 @@ export type VoucherUncheckedCreateWithoutSupplierInput = {
   customerId?: string | null
   invoice?: Prisma.InvoiceUncheckedCreateNestedOneWithoutVoucherInput
   inventoryTransactions?: Prisma.InventoryTransactionUncheckedCreateNestedManyWithoutVoucherInput
+  voucherItems?: Prisma.VoucherItemUncheckedCreateNestedManyWithoutVoucherInput
 }
 
 export type VoucherCreateOrConnectWithoutSupplierInput = {
@@ -786,6 +818,7 @@ export type VoucherCreateWithoutInvoiceInput = {
   customer?: Prisma.CustomerCreateNestedOneWithoutVouchersInput
   supplier?: Prisma.SupplierCreateNestedOneWithoutVouchersInput
   inventoryTransactions?: Prisma.InventoryTransactionCreateNestedManyWithoutVoucherInput
+  voucherItems?: Prisma.VoucherItemCreateNestedManyWithoutVoucherInput
 }
 
 export type VoucherUncheckedCreateWithoutInvoiceInput = {
@@ -798,6 +831,7 @@ export type VoucherUncheckedCreateWithoutInvoiceInput = {
   customerId?: string | null
   supplierId?: string | null
   inventoryTransactions?: Prisma.InventoryTransactionUncheckedCreateNestedManyWithoutVoucherInput
+  voucherItems?: Prisma.VoucherItemUncheckedCreateNestedManyWithoutVoucherInput
 }
 
 export type VoucherCreateOrConnectWithoutInvoiceInput = {
@@ -826,6 +860,7 @@ export type VoucherUpdateWithoutInvoiceInput = {
   customer?: Prisma.CustomerUpdateOneWithoutVouchersNestedInput
   supplier?: Prisma.SupplierUpdateOneWithoutVouchersNestedInput
   inventoryTransactions?: Prisma.InventoryTransactionUpdateManyWithoutVoucherNestedInput
+  voucherItems?: Prisma.VoucherItemUpdateManyWithoutVoucherNestedInput
 }
 
 export type VoucherUncheckedUpdateWithoutInvoiceInput = {
@@ -838,6 +873,7 @@ export type VoucherUncheckedUpdateWithoutInvoiceInput = {
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   supplierId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   inventoryTransactions?: Prisma.InventoryTransactionUncheckedUpdateManyWithoutVoucherNestedInput
+  voucherItems?: Prisma.VoucherItemUncheckedUpdateManyWithoutVoucherNestedInput
 }
 
 export type VoucherCreateWithoutInventoryTransactionsInput = {
@@ -850,6 +886,7 @@ export type VoucherCreateWithoutInventoryTransactionsInput = {
   customer?: Prisma.CustomerCreateNestedOneWithoutVouchersInput
   supplier?: Prisma.SupplierCreateNestedOneWithoutVouchersInput
   invoice?: Prisma.InvoiceCreateNestedOneWithoutVoucherInput
+  voucherItems?: Prisma.VoucherItemCreateNestedManyWithoutVoucherInput
 }
 
 export type VoucherUncheckedCreateWithoutInventoryTransactionsInput = {
@@ -862,6 +899,7 @@ export type VoucherUncheckedCreateWithoutInventoryTransactionsInput = {
   customerId?: string | null
   supplierId?: string | null
   invoice?: Prisma.InvoiceUncheckedCreateNestedOneWithoutVoucherInput
+  voucherItems?: Prisma.VoucherItemUncheckedCreateNestedManyWithoutVoucherInput
 }
 
 export type VoucherCreateOrConnectWithoutInventoryTransactionsInput = {
@@ -890,6 +928,7 @@ export type VoucherUpdateWithoutInventoryTransactionsInput = {
   customer?: Prisma.CustomerUpdateOneWithoutVouchersNestedInput
   supplier?: Prisma.SupplierUpdateOneWithoutVouchersNestedInput
   invoice?: Prisma.InvoiceUpdateOneWithoutVoucherNestedInput
+  voucherItems?: Prisma.VoucherItemUpdateManyWithoutVoucherNestedInput
 }
 
 export type VoucherUncheckedUpdateWithoutInventoryTransactionsInput = {
@@ -902,6 +941,75 @@ export type VoucherUncheckedUpdateWithoutInventoryTransactionsInput = {
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   supplierId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   invoice?: Prisma.InvoiceUncheckedUpdateOneWithoutVoucherNestedInput
+  voucherItems?: Prisma.VoucherItemUncheckedUpdateManyWithoutVoucherNestedInput
+}
+
+export type VoucherCreateWithoutVoucherItemsInput = {
+  id?: string
+  voucherType: string
+  voucherNumber: string
+  date: Date | string
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  company: Prisma.CompanyCreateNestedOneWithoutVouchersInput
+  customer?: Prisma.CustomerCreateNestedOneWithoutVouchersInput
+  supplier?: Prisma.SupplierCreateNestedOneWithoutVouchersInput
+  invoice?: Prisma.InvoiceCreateNestedOneWithoutVoucherInput
+  inventoryTransactions?: Prisma.InventoryTransactionCreateNestedManyWithoutVoucherInput
+}
+
+export type VoucherUncheckedCreateWithoutVoucherItemsInput = {
+  id?: string
+  voucherType: string
+  voucherNumber: string
+  date: Date | string
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  companyId: string
+  customerId?: string | null
+  supplierId?: string | null
+  invoice?: Prisma.InvoiceUncheckedCreateNestedOneWithoutVoucherInput
+  inventoryTransactions?: Prisma.InventoryTransactionUncheckedCreateNestedManyWithoutVoucherInput
+}
+
+export type VoucherCreateOrConnectWithoutVoucherItemsInput = {
+  where: Prisma.VoucherWhereUniqueInput
+  create: Prisma.XOR<Prisma.VoucherCreateWithoutVoucherItemsInput, Prisma.VoucherUncheckedCreateWithoutVoucherItemsInput>
+}
+
+export type VoucherUpsertWithoutVoucherItemsInput = {
+  update: Prisma.XOR<Prisma.VoucherUpdateWithoutVoucherItemsInput, Prisma.VoucherUncheckedUpdateWithoutVoucherItemsInput>
+  create: Prisma.XOR<Prisma.VoucherCreateWithoutVoucherItemsInput, Prisma.VoucherUncheckedCreateWithoutVoucherItemsInput>
+  where?: Prisma.VoucherWhereInput
+}
+
+export type VoucherUpdateToOneWithWhereWithoutVoucherItemsInput = {
+  where?: Prisma.VoucherWhereInput
+  data: Prisma.XOR<Prisma.VoucherUpdateWithoutVoucherItemsInput, Prisma.VoucherUncheckedUpdateWithoutVoucherItemsInput>
+}
+
+export type VoucherUpdateWithoutVoucherItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  voucherType?: Prisma.StringFieldUpdateOperationsInput | string
+  voucherNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  company?: Prisma.CompanyUpdateOneRequiredWithoutVouchersNestedInput
+  customer?: Prisma.CustomerUpdateOneWithoutVouchersNestedInput
+  supplier?: Prisma.SupplierUpdateOneWithoutVouchersNestedInput
+  invoice?: Prisma.InvoiceUpdateOneWithoutVoucherNestedInput
+  inventoryTransactions?: Prisma.InventoryTransactionUpdateManyWithoutVoucherNestedInput
+}
+
+export type VoucherUncheckedUpdateWithoutVoucherItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  voucherType?: Prisma.StringFieldUpdateOperationsInput | string
+  voucherNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  companyId?: Prisma.StringFieldUpdateOperationsInput | string
+  customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  supplierId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invoice?: Prisma.InvoiceUncheckedUpdateOneWithoutVoucherNestedInput
+  inventoryTransactions?: Prisma.InventoryTransactionUncheckedUpdateManyWithoutVoucherNestedInput
 }
 
 export type VoucherCreateManyCompanyInput = {
@@ -924,6 +1032,7 @@ export type VoucherUpdateWithoutCompanyInput = {
   supplier?: Prisma.SupplierUpdateOneWithoutVouchersNestedInput
   invoice?: Prisma.InvoiceUpdateOneWithoutVoucherNestedInput
   inventoryTransactions?: Prisma.InventoryTransactionUpdateManyWithoutVoucherNestedInput
+  voucherItems?: Prisma.VoucherItemUpdateManyWithoutVoucherNestedInput
 }
 
 export type VoucherUncheckedUpdateWithoutCompanyInput = {
@@ -936,6 +1045,7 @@ export type VoucherUncheckedUpdateWithoutCompanyInput = {
   supplierId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   invoice?: Prisma.InvoiceUncheckedUpdateOneWithoutVoucherNestedInput
   inventoryTransactions?: Prisma.InventoryTransactionUncheckedUpdateManyWithoutVoucherNestedInput
+  voucherItems?: Prisma.VoucherItemUncheckedUpdateManyWithoutVoucherNestedInput
 }
 
 export type VoucherUncheckedUpdateManyWithoutCompanyInput = {
@@ -968,6 +1078,7 @@ export type VoucherUpdateWithoutCustomerInput = {
   supplier?: Prisma.SupplierUpdateOneWithoutVouchersNestedInput
   invoice?: Prisma.InvoiceUpdateOneWithoutVoucherNestedInput
   inventoryTransactions?: Prisma.InventoryTransactionUpdateManyWithoutVoucherNestedInput
+  voucherItems?: Prisma.VoucherItemUpdateManyWithoutVoucherNestedInput
 }
 
 export type VoucherUncheckedUpdateWithoutCustomerInput = {
@@ -980,6 +1091,7 @@ export type VoucherUncheckedUpdateWithoutCustomerInput = {
   supplierId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   invoice?: Prisma.InvoiceUncheckedUpdateOneWithoutVoucherNestedInput
   inventoryTransactions?: Prisma.InventoryTransactionUncheckedUpdateManyWithoutVoucherNestedInput
+  voucherItems?: Prisma.VoucherItemUncheckedUpdateManyWithoutVoucherNestedInput
 }
 
 export type VoucherUncheckedUpdateManyWithoutCustomerInput = {
@@ -1012,6 +1124,7 @@ export type VoucherUpdateWithoutSupplierInput = {
   customer?: Prisma.CustomerUpdateOneWithoutVouchersNestedInput
   invoice?: Prisma.InvoiceUpdateOneWithoutVoucherNestedInput
   inventoryTransactions?: Prisma.InventoryTransactionUpdateManyWithoutVoucherNestedInput
+  voucherItems?: Prisma.VoucherItemUpdateManyWithoutVoucherNestedInput
 }
 
 export type VoucherUncheckedUpdateWithoutSupplierInput = {
@@ -1024,6 +1137,7 @@ export type VoucherUncheckedUpdateWithoutSupplierInput = {
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   invoice?: Prisma.InvoiceUncheckedUpdateOneWithoutVoucherNestedInput
   inventoryTransactions?: Prisma.InventoryTransactionUncheckedUpdateManyWithoutVoucherNestedInput
+  voucherItems?: Prisma.VoucherItemUncheckedUpdateManyWithoutVoucherNestedInput
 }
 
 export type VoucherUncheckedUpdateManyWithoutSupplierInput = {
@@ -1043,10 +1157,12 @@ export type VoucherUncheckedUpdateManyWithoutSupplierInput = {
 
 export type VoucherCountOutputType = {
   inventoryTransactions: number
+  voucherItems: number
 }
 
 export type VoucherCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   inventoryTransactions?: boolean | VoucherCountOutputTypeCountInventoryTransactionsArgs
+  voucherItems?: boolean | VoucherCountOutputTypeCountVoucherItemsArgs
 }
 
 /**
@@ -1066,6 +1182,13 @@ export type VoucherCountOutputTypeCountInventoryTransactionsArgs<ExtArgs extends
   where?: Prisma.InventoryTransactionWhereInput
 }
 
+/**
+ * VoucherCountOutputType without action
+ */
+export type VoucherCountOutputTypeCountVoucherItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.VoucherItemWhereInput
+}
+
 
 export type VoucherSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1081,6 +1204,7 @@ export type VoucherSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   supplier?: boolean | Prisma.Voucher$supplierArgs<ExtArgs>
   invoice?: boolean | Prisma.Voucher$invoiceArgs<ExtArgs>
   inventoryTransactions?: boolean | Prisma.Voucher$inventoryTransactionsArgs<ExtArgs>
+  voucherItems?: boolean | Prisma.Voucher$voucherItemsArgs<ExtArgs>
   _count?: boolean | Prisma.VoucherCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["voucher"]>
 
@@ -1130,6 +1254,7 @@ export type VoucherInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   supplier?: boolean | Prisma.Voucher$supplierArgs<ExtArgs>
   invoice?: boolean | Prisma.Voucher$invoiceArgs<ExtArgs>
   inventoryTransactions?: boolean | Prisma.Voucher$inventoryTransactionsArgs<ExtArgs>
+  voucherItems?: boolean | Prisma.Voucher$voucherItemsArgs<ExtArgs>
   _count?: boolean | Prisma.VoucherCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type VoucherIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1151,6 +1276,7 @@ export type $VoucherPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     supplier: Prisma.$SupplierPayload<ExtArgs> | null
     invoice: Prisma.$InvoicePayload<ExtArgs> | null
     inventoryTransactions: Prisma.$InventoryTransactionPayload<ExtArgs>[]
+    voucherItems: Prisma.$VoucherItemPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1560,6 +1686,7 @@ export interface Prisma__VoucherClient<T, Null = never, ExtArgs extends runtime.
   supplier<T extends Prisma.Voucher$supplierArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Voucher$supplierArgs<ExtArgs>>): Prisma.Prisma__SupplierClient<runtime.Types.Result.GetResult<Prisma.$SupplierPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   invoice<T extends Prisma.Voucher$invoiceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Voucher$invoiceArgs<ExtArgs>>): Prisma.Prisma__InvoiceClient<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   inventoryTransactions<T extends Prisma.Voucher$inventoryTransactionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Voucher$inventoryTransactionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InventoryTransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  voucherItems<T extends Prisma.Voucher$voucherItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Voucher$voucherItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VoucherItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2076,6 +2203,30 @@ export type Voucher$inventoryTransactionsArgs<ExtArgs extends runtime.Types.Exte
   take?: number
   skip?: number
   distinct?: Prisma.InventoryTransactionScalarFieldEnum | Prisma.InventoryTransactionScalarFieldEnum[]
+}
+
+/**
+ * Voucher.voucherItems
+ */
+export type Voucher$voucherItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the VoucherItem
+   */
+  select?: Prisma.VoucherItemSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the VoucherItem
+   */
+  omit?: Prisma.VoucherItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.VoucherItemInclude<ExtArgs> | null
+  where?: Prisma.VoucherItemWhereInput
+  orderBy?: Prisma.VoucherItemOrderByWithRelationInput | Prisma.VoucherItemOrderByWithRelationInput[]
+  cursor?: Prisma.VoucherItemWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.VoucherItemScalarFieldEnum | Prisma.VoucherItemScalarFieldEnum[]
 }
 
 /**
