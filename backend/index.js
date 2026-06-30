@@ -17,6 +17,8 @@ app.use("/stock-group", require("./routes/stockgrouproutes"))
 app.use("/stock-item", require("./routes/stockitemroutes"))
 app.use("/supplier", require("./routes/supplierroutes"))
 app.use("/purchase-voucher", require("./routes/purchasevoucherroutes"))
+app.use("/customer", require("./routes/customerroutes"))
+app.use("/sales-voucher", require("./routes/salesvoucherroutes"))
 
 app.get("/", (req,res)=>{
    res.json({"message":"App started"})
