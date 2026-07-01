@@ -7,7 +7,7 @@ const menuItems = [
   { name: "Masters", path: "/masters/ledgers" },
   { name: "Transactions", path: "/transactions" },
   { name: "Inventory", path: "/inventory/stock-items" },
-  { name: "Accounting", path: null },
+  { name: "Accounting", path: "/billing" },
   { name: "Banking", path: null },
   { name: "Payroll", path: null },
   { name: "GST", path: null },

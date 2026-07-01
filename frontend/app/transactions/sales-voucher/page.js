@@ -65,7 +65,14 @@ export default function SalesVouchers() {
             </div>
             <p className="text-sm text-gray-500">
               {new Date(v.date).toLocaleDateString()}
-              {v.invoice && ` | Invoice: ${v.invoice.invoiceNumber}`}
+              {v.invoice && (
+                <span
+                  className="ml-2 text-blue-600 cursor-pointer"
+                  onClick={() => router.push(`/billing/${v.invoice.id}`)}
+                >
+                  View Invoice: {v.invoice.invoiceNumber}
+                </span>
+              )}
             </p>
             <ul className="text-sm text-gray-600 mt-2 list-disc pl-5">
               {v.voucherItems?.map((vi) => (
