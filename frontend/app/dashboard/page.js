@@ -11,7 +11,7 @@ const menuItems = [
   { name: "Banking", path: null },
   { name: "Payroll", path: null },
   { name: "GST", path: null },
-  { name: "Reports", path: null },
+  { name: "Reports", path: "/reports" },
   { name: "Utilities", path: null },
   { name: "Administration", path: null },
 ];

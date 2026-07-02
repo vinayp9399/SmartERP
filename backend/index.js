@@ -20,6 +20,7 @@ app.use("/purchase-voucher", require("./routes/purchasevoucherroutes"))
 app.use("/customer", require("./routes/customerroutes"))
 app.use("/sales-voucher", require("./routes/salesvoucherroutes"))
 app.use("/invoice", require("./routes/invoiceroutes"))
+app.use("/reports", require("./routes/reportroutes"))
 
 app.get("/", (req,res)=>{
    res.json({"message":"App started"})
